@@ -1,4 +1,4 @@
-package entities;
+package com.example.demo.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,14 +9,11 @@ import javax.persistence.*;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
-public class Coc_user_prospect {
+public class Coc_reponse {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String COC_PROSPECT_pseudo;
-    private String COC_PROSPOECT_tel;
-    private String COC_PROSPECT_email;
-    private String COC_PROSPECT_motDepasse;
-    @Enumerated(EnumType.STRING)
-    private Coc_niveau coc_niveau;
-
+    private String COC_LIBELLE;
+    private String COC_EXACTITUDE;
+    @ManyToOne
+    private Coc_question coc_question;
 }
