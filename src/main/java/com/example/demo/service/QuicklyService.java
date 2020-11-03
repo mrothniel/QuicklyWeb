@@ -14,19 +14,19 @@ public interface QuicklyService {
 
     public void createModule(Long idCreator, Coc_module module);
 
-    public void modifModule(Long id);
+    public void updateModule(Long id);
 
     public List<Coc_module> findModules();
 
     public void createExercice(Long idModule, Coc_exercice exo);
 
-    public void modifExercice(Long id);
+    public void updateExercice(Long id);
 
     public List<Coc_exercice> findExercices();
 
     public void createQuestion(Long idExo, Coc_question question);
 
-    public void modifQuestion(Long id);
+    public void updateQuestion(Long id);
 
     public List<Coc_question> findQuestions();
 
@@ -36,7 +36,7 @@ public interface QuicklyService {
 
     public void createReponse(Long idQuestion, Coc_reponse reponse);
 
-    public void modifReponse(Long id);
+    public void updateReponse(Long id);
 
     public List<Coc_reponse> findReponses();
 
@@ -50,8 +50,8 @@ public interface QuicklyService {
 
     public Coc_reponse selectReponse();
 
-    public String voirSonAvancement();
+    public String seeAvancement();
 
-    public HashMap<Coc_question, Coc_reponse> reviserExercice();
+    public HashMap<Coc_question, Coc_reponse> reviewExercice();
 
     }
