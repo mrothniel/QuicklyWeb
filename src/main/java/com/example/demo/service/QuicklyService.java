@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.Coc_question_dto;
 import com.example.demo.entities.*;
 
 import java.util.ArrayList;
@@ -53,6 +54,6 @@ public interface QuicklyService {
 
     public String seeAvancement(Long idApprenant);
 
-    public HashMap<Coc_question, ArrayList<Coc_reponse>> reviewExercice();
+    public HashMap<Coc_question_dto, ArrayList<Coc_reponse>> reviewExercice();
 
     }

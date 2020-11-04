@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.*;
+import com.example.demo.dto.Coc_question_dto;
 import com.example.demo.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class QuicklyServiceImpl  implements QuicklyService{
     Coc_moduleRepositories coc_moduleRepositories;
      @Autowired
     Coc_niveauRepositories coc_niveauRepositories;
-    @Autowired
+     @Autowired
     Coc_questionRepositories coc_questionRepositories;
      @Autowired
     Coc_reponseRepositories coc_reponseRepositories;
@@ -153,12 +154,12 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    public HashMap<Coc_question, ArrayList<Coc_reponse>> reviewExercice() {
-       HashMap<Coc_question, ArrayList<Coc_reponse>> review= new HashMap<>();
-       coc_questionRepositories.findAll().forEach(coc_question ->
-              review.put(coc_question,coc_reponseRepositories.getReponsesfromQuestion(coc_question.getId()))
+    public HashMap<Coc_question_dto, ArrayList<Coc_reponse>> reviewExercice() {
+      /* HashMap<Coc_question_dto, ArrayList<Coc_reponse>> review= new HashMap<>();
+       coc_questionRepositories.findAll().forEach(coc_question_dto ->
+              review.put(coc_question_dto, coc_reponseRepositories.getReponsesfromQuestion(coc_question_dto.getId()))
         );
-        return review;
+        return review; */
         return null;
     }
 }

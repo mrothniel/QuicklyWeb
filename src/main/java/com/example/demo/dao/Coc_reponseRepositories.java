@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @RepositoryRestResource
 public interface Coc_reponseRepositories extends JpaRepository<Coc_reponse, Long> {
     @Query("Select * from coc_reponse where coc_question_id = :idQuestion")
-    List<Coc_reponse> getReponsesfromQuestion(@Param("idQuestion") long idQuestion);
+    ArrayList<Coc_reponse> getReponsesfromQuestion(@Param("idQuestion") long idQuestion);
 }
