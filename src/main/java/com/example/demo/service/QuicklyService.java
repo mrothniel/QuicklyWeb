@@ -42,7 +42,7 @@ public interface QuicklyService {
 
     public String getAvancementApprenant(Long idApprenant);
 
-    public Coc_niveau selectNiveau();
+  /*  public Coc_niveau selectNiveau();*/
 
     public Coc_module selectModule();
 

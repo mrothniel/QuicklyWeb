@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.entities.Coc_exercice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,5 +9,4 @@ public class QuicklyApplication {
     public static void main(String[] args) {
         SpringApplication.run(QuicklyApplication.class, args);
     }
-
 }

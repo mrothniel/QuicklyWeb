@@ -23,8 +23,8 @@ public class QuicklyServiceImpl  implements QuicklyService{
      Coc_exerciceRepositories coc_exerciceRepositories;
      @Autowired
     Coc_moduleRepositories coc_moduleRepositories;
-     @Autowired
-    Coc_niveauRepositories coc_niveauRepositories;
+   /*  @Autowired
+    Coc_niveauRepositories coc_niveauRepositories;*/
      @Autowired
     Coc_reponseRepositories coc_reponseRepositories;
      @Autowired
@@ -120,10 +120,10 @@ public class QuicklyServiceImpl  implements QuicklyService{
         return null;
     }
 
-    @Override
+   /* @Override
     public Coc_niveau selectNiveau() {
         return null;
-    }
+    }*/
 
     @Override
     public Coc_module selectModule() {

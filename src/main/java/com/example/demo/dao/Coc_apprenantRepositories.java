@@ -7,5 +7,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface Coc_apprenantRepositories extends JpaRepository<Coc_apprenant, Long> {
 
-
 }
