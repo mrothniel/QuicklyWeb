@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -120,13 +121,12 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    public String getAvancementApprenant(List<Integer> listeIdApprenant) {
-       /* String Avancements = "";
-        for(int id : listeIdApprenant){
-            Avancements += "\n Apprenant numero "+id+" = 1 / "+coc_ens_app_exerRepositories.getApprenantAvancement(id);
+    public String getAvancementApprenant(List<Long> listeIdApprenant) {
+        String Avancements = "";
+        for(Long id : listeIdApprenant) {
+            Avancements += "\n Apprenant numero " + id + " = 1 / " + coc_apprenantRepositories.getOne(id).getCoc_ens_app_exers().size();;
         }
-        return Avancements;*/
-       return null;
+        return Avancements;
     }
 
     @Override
@@ -151,16 +151,15 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public String seeAvancement(Long idApprenant) {
-        return null; //"1 / "+ coc_ens_app_exerRepositories.getApprenantAvancement(idApprenant);
+        return "1 / "+coc_apprenantRepositories.getOne(idApprenant).getCoc_ens_app_exers().size();
     }
 
     @Override
-    public HashMap<Coc_question, ArrayList<Coc_reponse>> reviewExercice() {
-      /* HashMap<Coc_question, ArrayList<Coc_reponse>> review= new HashMap<>();
+    public HashMap<Coc_question, Collection<Coc_reponse>> reviewExercice() {
+       HashMap<Coc_question, Collection<Coc_reponse>> review= new HashMap<>();
        coc_questionRepositories.findAll().forEach(coc_question ->
-              review.put(coc_question, coc_reponseRepositories.getReponsesfromQuestion(coc_question.getId()))
+              review.put(coc_question, coc_question.getCoc_reponses())
         );
-        return review;*/
-      return null;
+        return review;
     }
 }

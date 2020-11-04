@@ -4,6 +4,7 @@ import com.example.demo.dto.Coc_question_dto;
 import com.example.demo.entities.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public interface QuicklyService {
 
     public List<Coc_reponse> findReponses();
 
-    public String getAvancementApprenant(List<Integer> idApprenant);
+    public String getAvancementApprenant(List<Long> idApprenant);
 
     public Coc_niveau selectNiveau(Long id);
 
@@ -54,6 +55,6 @@ public interface QuicklyService {
 
     public String seeAvancement(Long idApprenant);
 
-    public HashMap<Coc_question, ArrayList<Coc_reponse>> reviewExercice();
+    public HashMap<Coc_question, Collection<Coc_reponse>> reviewExercice();
 
     }
