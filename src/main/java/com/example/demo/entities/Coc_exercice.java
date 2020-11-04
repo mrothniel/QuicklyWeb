@@ -17,7 +17,7 @@ public class Coc_exercice {
     private String COC_AVANCEMENT_EXERCICE;
     @ManyToOne
     private Coc_module coc_module;
-    @Enumerated(EnumType.STRING)
+    @OneToOne
     private Coc_niveau coc_niveau;
     @OneToMany(mappedBy = "coc_exercice")
     private Collection<Coc_ens_app_exer> coc_ens_app_exers;
