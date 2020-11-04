@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.Coc_question_dto;
 import com.example.demo.entities.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,18 +42,18 @@ public interface QuicklyService {
 
     public List<Coc_reponse> findReponses();
 
-    public String getAvancementApprenant(Long idApprenant);
+    public String getAvancementApprenant(List<Integer> idApprenant);
 
-  /*  public Coc_niveau selectNiveau();*/
+    public Coc_niveau selectNiveau(Long id);
 
-    public Coc_module selectModule();
+    public Coc_module selectModule(Long id);
 
-    public Coc_exercice selectExercice();
+    public Coc_exercice selectExercice(Long id);
 
-    public Coc_reponse selectReponse();
+    public Coc_reponse selectReponse(Long id);
 
-    public String seeAvancement();
+    public String seeAvancement(Long idApprenant);
 
-    public HashMap<Coc_question, Coc_reponse> reviewExercice();
+    public HashMap<Coc_question, ArrayList<Coc_reponse>> reviewExercice();
 
     }

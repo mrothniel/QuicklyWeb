@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.*;
+import com.example.demo.dto.Coc_question_dto;
 import com.example.demo.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,8 +25,10 @@ public class QuicklyServiceImpl  implements QuicklyService{
      Coc_exerciceRepositories coc_exerciceRepositories;
      @Autowired
     Coc_moduleRepositories coc_moduleRepositories;
-   /*  @Autowired
-    Coc_niveauRepositories coc_niveauRepositories;*/
+     @Autowired
+    Coc_niveauRepositories coc_niveauRepositories;
+     @Autowired
+    Coc_questionRepositories coc_questionRepositories;
      @Autowired
     Coc_reponseRepositories coc_reponseRepositories;
      @Autowired
@@ -112,41 +116,51 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public List<Coc_reponse> findReponses() {
-        return null;
+        return coc_reponseRepositories.findAll();
     }
 
     @Override
-    public String getAvancementApprenant(Long idApprenant) {
-        return null;
-    }
-
-   /* @Override
-    public Coc_niveau selectNiveau() {
-        return null;
-    }*/
-
-    @Override
-    public Coc_module selectModule() {
-        return null;
+    public String getAvancementApprenant(List<Integer> listeIdApprenant) {
+       /* String Avancements = "";
+        for(int id : listeIdApprenant){
+            Avancements += "\n Apprenant numero "+id+" = 1 / "+coc_ens_app_exerRepositories.getApprenantAvancement(id);
+        }
+        return Avancements;*/
+       return null;
     }
 
     @Override
-    public Coc_exercice selectExercice() {
-        return null;
+    public Coc_niveau selectNiveau(Long id) {
+        return coc_niveauRepositories.getOne(id);
     }
 
     @Override
-    public Coc_reponse selectReponse() {
-        return null;
+    public Coc_module selectModule(Long id) {
+        return coc_moduleRepositories.getOne(id);
     }
 
     @Override
-    public String seeAvancement() {
-        return null;
+    public Coc_exercice selectExercice(Long id) {
+        return coc_exerciceRepositories.getOne(id);
     }
 
     @Override
-    public HashMap<Coc_question, Coc_reponse> reviewExercice() {
-        return null;
+    public Coc_reponse selectReponse(Long id) {
+        return coc_reponseRepositories.getOne(id);
+    }
+
+    @Override
+    public String seeAvancement(Long idApprenant) {
+        return null; //"1 / "+ coc_ens_app_exerRepositories.getApprenantAvancement(idApprenant);
+    }
+
+    @Override
+    public HashMap<Coc_question, ArrayList<Coc_reponse>> reviewExercice() {
+      /* HashMap<Coc_question, ArrayList<Coc_reponse>> review= new HashMap<>();
+       coc_questionRepositories.findAll().forEach(coc_question ->
+              review.put(coc_question, coc_reponseRepositories.getReponsesfromQuestion(coc_question.getId()))
+        );
+        return review;*/
+      return null;
     }
 }

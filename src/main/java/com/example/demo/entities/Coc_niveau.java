@@ -11,12 +11,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @ToString
+@NoArgsConstructor @AllArgsConstructor @ToString
 public class Coc_niveau {
    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
    private String libelle;
 
+   public Long getId() {
+      return id;
+   }
 
+   public String getLibelle() {
+      return libelle;
+   }
 
+   public void setLibelle(String libelle) {
+      this.libelle = libelle;
+   }
 }
