@@ -21,7 +21,7 @@ public class Coc_apprenant {
     private String COC_APPRENANT_TEL;
     @ManyToOne
     private Coc_client client;
-    @Enumerated(EnumType.STRING)
+    @OneToOne
     private Coc_niveau coc_niveau;
     @OneToMany(mappedBy = "coc_apprenant")
     private Collection<Coc_ens_app_exer> coc_ens_app_exers;
