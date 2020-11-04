@@ -16,7 +16,7 @@ public class Coc_user_prospect {
     private String COC_PROSPOECT_tel;
     private String COC_PROSPECT_email;
     private String COC_PROSPECT_motDepasse;
-    @Enumerated(EnumType.STRING)
+    @OneToOne
     private Coc_niveau coc_niveau;
 
 }
