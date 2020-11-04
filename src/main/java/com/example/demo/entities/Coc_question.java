@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor @ToString
+@AllArgsConstructor @NoArgsConstructor @ToString
 public class Coc_question {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,4 +21,56 @@ public class Coc_question {
     private Coc_exercice coc_exercice;
     @OneToMany
     private Collection<Coc_reponse> coc_reponses;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCOC_INSTRUCTION() {
+        return COC_INSTRUCTION;
+    }
+
+    public void setCOC_INSTRUCTION(String COC_INSTRUCTION) {
+        this.COC_INSTRUCTION = COC_INSTRUCTION;
+    }
+
+    public String getCOC_TYPE() {
+        return COC_TYPE;
+    }
+
+    public void setCOC_TYPE(String COC_TYPE) {
+        this.COC_TYPE = COC_TYPE;
+    }
+
+    public String getCOC_LIBELLE() {
+        return COC_LIBELLE;
+    }
+
+    public void setCOC_LIBELLE(String COC_LIBELLE) {
+        this.COC_LIBELLE = COC_LIBELLE;
+    }
+
+    public String getCOC_VOICE() {
+        return COC_VOICE;
+    }
+
+    public void setCOC_VOICE(String COC_VOICE) {
+        this.COC_VOICE = COC_VOICE;
+    }
+
+    public Coc_exercice getCoc_exercice() {
+        return coc_exercice;
+    }
+
+    public void setCoc_exercice(Coc_exercice coc_exercice) {
+        this.coc_exercice = coc_exercice;
+    }
+
+    public Collection<Coc_reponse> getCoc_reponses() {
+        return coc_reponses;
+    }
+
+    public void setCoc_reponses(Collection<Coc_reponse> coc_reponses) {
+        this.coc_reponses = coc_reponses;
+    }
 }

@@ -54,6 +54,6 @@ public interface QuicklyService {
 
     public String seeAvancement(Long idApprenant);
 
-    public HashMap<Coc_question_dto, ArrayList<Coc_reponse>> reviewExercice();
+    public HashMap<Coc_question, ArrayList<Coc_reponse>> reviewExercice();
 
     }

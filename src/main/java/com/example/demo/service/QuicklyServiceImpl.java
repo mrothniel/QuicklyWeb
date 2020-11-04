@@ -121,11 +121,12 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public String getAvancementApprenant(List<Integer> listeIdApprenant) {
-        String Avancements = "";
+       /* String Avancements = "";
         for(int id : listeIdApprenant){
             Avancements += "\n Apprenant numero "+id+" = 1 / "+coc_ens_app_exerRepositories.getApprenantAvancement(id);
         }
-        return Avancements;
+        return Avancements;*/
+       return null;
     }
 
     @Override
@@ -150,16 +151,16 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public String seeAvancement(Long idApprenant) {
-        return "1 / "+ coc_ens_app_exerRepositories.getApprenantAvancement(idApprenant);
+        return null; //"1 / "+ coc_ens_app_exerRepositories.getApprenantAvancement(idApprenant);
     }
 
     @Override
-    public HashMap<Coc_question_dto, ArrayList<Coc_reponse>> reviewExercice() {
-      /* HashMap<Coc_question_dto, ArrayList<Coc_reponse>> review= new HashMap<>();
-       coc_questionRepositories.findAll().forEach(coc_question_dto ->
-              review.put(coc_question_dto, coc_reponseRepositories.getReponsesfromQuestion(coc_question_dto.getId()))
+    public HashMap<Coc_question, ArrayList<Coc_reponse>> reviewExercice() {
+      /* HashMap<Coc_question, ArrayList<Coc_reponse>> review= new HashMap<>();
+       coc_questionRepositories.findAll().forEach(coc_question ->
+              review.put(coc_question, coc_reponseRepositories.getReponsesfromQuestion(coc_question.getId()))
         );
-        return review; */
-        return null;
+        return review;*/
+      return null;
     }
 }

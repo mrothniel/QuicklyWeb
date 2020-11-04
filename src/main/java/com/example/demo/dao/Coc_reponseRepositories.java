@@ -10,6 +10,6 @@ import java.util.ArrayList;
 
 @RepositoryRestResource
 public interface Coc_reponseRepositories extends JpaRepository<Coc_reponse, Long> {
-    @Query("Select * from coc_reponse where coc_question_id = :idQuestion")
-    ArrayList<Coc_reponse> getReponsesfromQuestion(@Param("idQuestion") long idQuestion);
+   // @Query("Select * from coc_reponse where coc_question_id = :idQuestion")
+   // ArrayList<Coc_reponse> getReponsesfromQuestion(@Param("idQuestion") long idQuestion);
 }

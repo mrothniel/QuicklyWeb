@@ -9,6 +9,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface Coc_ens_app_exerRepositories extends JpaRepository<Coc_ens_app_exer, Long> {
-    @Query("Select count(*) from coc_ens_app_exer where coc_apprenant_id = :idApprenant")
-    int getApprenantAvancement(@Param("idApprenant") long idApprenant);
+    //@Query("Select count(*) from Coc_ens_app_exer where coc_apprenant_id = :idApprenant")
+    //int getApprenantAvancement(@Param("idApprenant") long idApprenant);
 }
