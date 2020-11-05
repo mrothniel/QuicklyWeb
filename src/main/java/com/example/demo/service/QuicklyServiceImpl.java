@@ -1,16 +1,17 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.*;
-import com.example.demo.dto.Coc_question_dto;
 import com.example.demo.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@Service
+@RestController
 public class QuicklyServiceImpl  implements QuicklyService{
 
     @Autowired
@@ -75,8 +76,9 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
+    @GetMapping("/listExercices")
     public List<Coc_exercice> findExercices() {
-        return null;
+        return coc_exerciceRepositories.findAll();
     }
 
     @Override
@@ -90,8 +92,9 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
+    @GetMapping("/listQuestions")
     public List<Coc_question> findQuestions() {
-        return null;
+        return coc_questionRepositories.findAll();
     }
 
     @Override
