@@ -9,21 +9,21 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface QuicklyService {
-    public List<Coc_apprenant> findApprenants();
+    public List<Coc_apprenant> findApprenants(Long idEnseignant);
 
     public Coc_apprenant selectApprenant(Long id);
 
-    public void attribuerExo(List<Coc_apprenant> apprs, Coc_exercice exo);
+    public void setExercice(List<Coc_apprenant> apprs, Coc_exercice exo, Long idenseignant);
 
     public void createModule(Long idCreator, Coc_module module);
 
-    public void updateModule(Long id);
+    public void updateModule(Long id, Coc_module modules);
 
-    public List<Coc_module> findModules();
+    public List<Coc_module> getModules();
 
     public void createExercice(Long idModule, Coc_exercice exo);
 
-    public void updateExercice(Long id);
+    public void updateExercice(Long id, Coc_exercice exercice);
 
     public List<Coc_exercice> findExercices(Long idModule);
 

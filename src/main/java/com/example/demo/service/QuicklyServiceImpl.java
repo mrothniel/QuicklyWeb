@@ -53,6 +53,8 @@ public class QuicklyServiceImpl  implements QuicklyService{
         for(Coc_apprenant apprenantList : apprenants ){
             Coc_ens_app_exer exercicesEns = new Coc_ens_app_exer();
             exercicesEns.setCoc_apprenant(apprenantList);
+            exercicesEns.setCoc_exercice(exercice);
+            exercicesEns.setCoc_enseignant(coc_enseignantRepositories.getOne(idenseignant));
         }
     }
 
