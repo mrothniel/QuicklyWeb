@@ -25,7 +25,7 @@ public interface QuicklyService {
 
     public void updateExercice(Long id);
 
-    public List<Coc_exercice> findExercices();
+    public List<Coc_exercice> findExercices(Long idModule);
 
     public void createQuestion(Long idExo, Coc_question question);
 
