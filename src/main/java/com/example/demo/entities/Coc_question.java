@@ -17,6 +17,8 @@ public class Coc_question {
     private String COC_TYPE;
     private String COC_LIBELLE;
     private String COC_VOICE;
+    private String COC_IMAGE;
+
     @ManyToOne
     private Coc_exercice coc_exercice;
     @OneToMany
@@ -65,7 +67,13 @@ public class Coc_question {
     public void setCoc_exercice(Coc_exercice coc_exercice) {
         this.coc_exercice = coc_exercice;
     }
+    public String getCOC_IMAGE() {
+        return COC_IMAGE;
+    }
 
+    public void setCOC_IMAGE(String COC_IMAGE) {
+        this.COC_IMAGE = COC_IMAGE;
+    }
     public Collection<Coc_reponse> getCoc_reponses() {
         return coc_reponses;
     }
