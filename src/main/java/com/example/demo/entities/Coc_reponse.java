@@ -13,7 +13,7 @@ public class Coc_reponse {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String COC_LIBELLE;
-    private String COC_EXACTITUDE;
+    private boolean COC_EXACTITUDE;
     @ManyToOne
     private Coc_question coc_question;
 
@@ -29,11 +29,11 @@ public class Coc_reponse {
         this.COC_LIBELLE = COC_LIBELLE;
     }
 
-    public String getCOC_EXACTITUDE() {
+    public boolean isCOC_EXACTITUDE() {
         return COC_EXACTITUDE;
     }
 
-    public void setCOC_EXACTITUDE(String COC_EXACTITUDE) {
+    public void setCOC_EXACTITUDE(boolean COC_EXACTITUDE) {
         this.COC_EXACTITUDE = COC_EXACTITUDE;
     }
 

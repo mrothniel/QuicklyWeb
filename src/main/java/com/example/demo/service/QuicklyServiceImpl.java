@@ -116,8 +116,13 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    public List<Coc_reponse> findReponses() {
-        return coc_reponseRepositories.findAll();
+    public List<Coc_reponse> findReponses(Long idExercice) {
+        List<Coc_reponse> list = new ArrayList<>();
+         for(Coc_reponse reponse : coc_reponseRepositories.findAll()){
+                 if(reponse.getCoc_question().getCoc_exercice().getId().equals(idExercice))
+                    list.add(reponse);
+         }
+         return list;
     }
 
     @Override
@@ -155,11 +160,15 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    public HashMap<Coc_question, Collection<Coc_reponse>> reviewExercice() {
-       HashMap<Coc_question, Collection<Coc_reponse>> review= new HashMap<>();
-       coc_questionRepositories.findAll().forEach(coc_question ->
-              review.put(coc_question, coc_question.getCoc_reponses())
-        );
+    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idExercice) {
+       HashMap<Coc_question, Coc_reponse> review= new HashMap<>();
+       List<Coc_question> listQuestions = new ArrayList<>();
+       for(Coc_question question : coc_exerciceRepositories.getOne(idExercice).getCoc_questions()) {
+           for (Coc_reponse reponse : question.getCoc_reponses()) {
+               if (reponse.isCOC_EXACTITUDE())
+                   review.put(question, reponse);
+           }
+       }
         return review;
     }
 }

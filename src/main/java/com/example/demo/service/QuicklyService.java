@@ -41,7 +41,7 @@ public interface QuicklyService {
 
     public void updateReponse(Long id);
 
-    public List<Coc_reponse> findReponses();
+    public List<Coc_reponse> findReponses(Long idExercice);
 
     public String getAvancementApprenant(List<Long> idApprenant);
 
@@ -55,6 +55,6 @@ public interface QuicklyService {
 
     public String seeAvancement(Long idApprenant);
 
-    public HashMap<Coc_question, Collection<Coc_reponse>> reviewExercice();
+    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idExercice);
 
     }
