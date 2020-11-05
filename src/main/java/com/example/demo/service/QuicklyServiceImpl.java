@@ -127,11 +127,11 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public String getAvancementApprenant(List<Long> listeIdApprenant) {
-        String Avancements = "";
+        StringBuilder Avancements = new StringBuilder();
         for(Long id : listeIdApprenant) {
-            Avancements += "\n Apprenant numero " + id + " = 1 / " + coc_apprenantRepositories.getOne(id).getCoc_ens_app_exers().size();;
+            Avancements.append("\n Apprenant numero ").append(id).append(" = 1 / ").append(coc_apprenantRepositories.getOne(id).getCoc_ens_app_exers().size());;
         }
-        return Avancements;
+        return Avancements.toString();
     }
 
     @Override
