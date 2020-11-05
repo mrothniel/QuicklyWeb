@@ -29,9 +29,9 @@ public interface QuicklyService {
 
     public void createQuestion(Long idExo, Coc_question question);
 
-    public void updateQuestion(Long id);
+    public void updateQuestion(Long id,Coc_question newQuestion);
 
-    public List<Coc_question> findQuestions();
+    public List<Coc_question> findQuestions(long IdExercice);
 
     public void uploadImage(Long idQuestion, String urlImage);
 
@@ -39,7 +39,7 @@ public interface QuicklyService {
 
     public void createReponse(Long idQuestion, Coc_reponse reponse);
 
-    public void updateReponse(Long id);
+    public void updateReponse(Long id,Coc_reponse newReponse);
 
     public List<Coc_reponse> findReponses(Long idExercice);
 

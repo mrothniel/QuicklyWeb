@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-@RestController
+@Service
 public class QuicklyServiceImpl  implements QuicklyService{
 
     @Autowired
@@ -77,45 +77,59 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    @GetMapping("/listExercices")
     public List<Coc_exercice> findExercices() {
         return coc_exerciceRepositories.findAll();
     }
 
     @Override
     public void createQuestion(Long idExercice, Coc_question question) {
-
+        Coc_exercice exercice = coc_exerciceRepositories.getOne(idExercice);
+        exercice.getCoc_questions().add(question);
+        question.setCoc_exercice(exercice);
+        coc_questionRepositories.save(question);
     }
 
     @Override
-    public void updateQuestion(Long id) {
-
+    public void updateQuestion(Long id, Coc_question newQuestion) {
+        coc_questionRepositories.getOne(id).setCOC_INSTRUCTION(newQuestion.getCOC_INSTRUCTION());
+        coc_questionRepositories.getOne(id).setCOC_LIBELLE(newQuestion.getCOC_LIBELLE());
+        coc_questionRepositories.getOne(id).setCOC_TYPE(newQuestion.getCOC_TYPE());
+        coc_questionRepositories.getOne(id).setCOC_VOICE(newQuestion.getCOC_VOICE());
     }
 
     @Override
-    @GetMapping("/listQuestions")
-    public List<Coc_question> findQuestions() {
-        return coc_questionRepositories.findAll();
+    public List<Coc_question> findQuestions(long IdExercice) {
+        List<Coc_question> listExo = new ArrayList<>();
+        for(Coc_question  question: coc_questionRepositories.findAll()){
+            if (question.getCoc_exercice().getId().equals(IdExercice)){
+                listExo.add(question);
+            }
+        }
+        return listExo;
     }
 
     @Override
     public void uploadImage(Long idQuestion, String urlImage) {
-
+     coc_questionRepositories.getOne(idQuestion).setCOC_IMAGE( urlImage);
     }
 
     @Override
     public void uploadVoice(Long idQuestion, String urlVoice) {
-
+        coc_questionRepositories.getOne(idQuestion).setCOC_VOICE(urlVoice);
     }
 
     @Override
-    public void createReponse(Long idQuestion, Coc_reponse reponse) {
-
+    public void createReponse(Long idQuestion, Coc_reponse newReponse) {
+        Coc_question  question  = coc_questionRepositories.getOne(idQuestion);
+         question.getCoc_reponses().add(newReponse);
+         newReponse.setCoc_question(question);
+         coc_reponseRepositories.save(newReponse);
     }
 
     @Override
-    public void updateReponse(Long id) {
-
+    public void updateReponse(Long id,Coc_reponse newReponse) {
+            coc_reponseRepositories.getOne(id).setCOC_LIBELLE(newReponse.getCOC_LIBELLE());
+        coc_reponseRepositories.getOne(id).setCOC_EXACTITUDE( newReponse.isCOC_EXACTITUDE());
     }
 
     @Override
