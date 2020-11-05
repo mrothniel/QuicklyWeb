@@ -89,8 +89,14 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    public List<Coc_exercice> findExercices() {
-        return coc_exerciceRepositories.findAll();
+    public List<Coc_exercice> findExercices(Long idModule) {
+        List<Coc_exercice> listExo = new ArrayList<>();
+        for(Coc_exercice  exercice : coc_exerciceRepositories.findAll()){
+           if( exercice.getCoc_module().getId().equals( idModule)){
+               listExo.add(exercice);
+           };
+        }
+        return listExo;
     }
 
     @Override
