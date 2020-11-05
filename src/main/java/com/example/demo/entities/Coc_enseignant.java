@@ -23,6 +23,7 @@ public class Coc_enseignant {
     @OneToMany(mappedBy = "coc_enseignant")
     private Collection<Coc_ens_app_exer> coc_ens_app_exers;
 
+
     public Long getId() {
         return id;
     }

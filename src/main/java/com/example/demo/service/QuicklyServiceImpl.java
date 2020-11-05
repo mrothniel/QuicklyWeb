@@ -4,13 +4,8 @@ import com.example.demo.dao.*;
 import com.example.demo.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class QuicklyServiceImpl  implements QuicklyService{
@@ -37,18 +32,28 @@ public class QuicklyServiceImpl  implements QuicklyService{
     Coc_user_prospectRepositories coc_user_prospectRepositories;
 
     @Override
-    public List<Coc_apprenant> findApprenants() {
-        return null;
+    public List<Coc_apprenant> findApprenants(Long idEnseignant) {
+        //Optional<Coc_enseignant> enseignant = coc_enseignantRepositories.findById(idEnseignant);
+        List<Coc_apprenant> apprenantList = new LinkedList<>();
+        for(Coc_ens_app_exer ens_app_exer: coc_ens_app_exerRepositories.findAll()){
+            if (ens_app_exer.getCoc_enseignant().getId().equals(idEnseignant)){
+                apprenantList.add(ens_app_exer.getCoc_apprenant());
+            }
+        }
+        return apprenantList;
     }
 
     @Override
     public Coc_apprenant selectApprenant(Long id) {
-        return null;
+        return coc_apprenantRepositories.getOne(id);
     }
 
     @Override
-    public void attribuerExo(List<Coc_apprenant> apprenants, Coc_exercice exercice) {
-
+    public void setExercice(List<Coc_apprenant> apprenants, Coc_exercice exercice, Long idenseignant) {
+        for(Coc_apprenant apprenantList : apprenants ){
+            Coc_ens_app_exer exercicesEns = new Coc_ens_app_exer();
+            exercicesEns.setCoc_apprenant(apprenantList);
+        }
     }
 
     @Override
@@ -57,23 +62,30 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    public void updateModule(Long id) {
-
+    public void updateModule(Long id, Coc_module modules) {
+        coc_moduleRepositories.getOne(id).setCOC_LIBELLE(modules.getCOC_LIBELLE());
+        coc_moduleRepositories.getOne(id).setCOC_AVANCEMENT_MODULE(modules.getCOC_LIBELLE());
     }
 
     @Override
-    public List<Coc_module> findModules() {
+    public List<Coc_module> getModules() {
         return null;
     }
 
     @Override
     public void createExercice(Long idModule, Coc_exercice exercice) {
-
+        Coc_exercice cExercice = new Coc_exercice();
+        cExercice.setCOC_LIBELLE(exercice.getCOC_LIBELLE());
+        cExercice.setCoc_niveau(exercice.getCoc_niveau());
+        cExercice.setCoc_questions(exercice.getCoc_questions());
+        Coc_module module = coc_moduleRepositories.getOne(idModule);
+        cExercice.setCoc_module(module);
+        coc_exerciceRepositories.save(cExercice);
     }
 
     @Override
-    public void updateExercice(Long id) {
-
+    public void updateExercice(Long id, Coc_exercice exercice) {
+        coc_exerciceRepositories.getOne(id).setCOC_LIBELLE(exercice.getCOC_LIBELLE());
     }
 
     @Override
@@ -128,7 +140,7 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public void updateReponse(Long id,Coc_reponse newReponse) {
-            coc_reponseRepositories.getOne(id).setCOC_LIBELLE(newReponse.getCOC_LIBELLE());
+        coc_reponseRepositories.getOne(id).setCOC_LIBELLE(newReponse.getCOC_LIBELLE());
         coc_reponseRepositories.getOne(id).setCOC_EXACTITUDE( newReponse.isCOC_EXACTITUDE());
     }
 
@@ -144,11 +156,11 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public String getAvancementApprenant(List<Long> listeIdApprenant) {
-        String Avancements = "";
+        StringBuilder Avancements = new StringBuilder();
         for(Long id : listeIdApprenant) {
-            Avancements += "\n Apprenant numero " + id + " = 1 / " + coc_apprenantRepositories.getOne(id).getCoc_ens_app_exers().size();;
+            Avancements.append("\n Apprenant numero ").append(id).append(" = 1 / ").append(coc_apprenantRepositories.getOne(id).getCoc_ens_app_exers().size());
         }
-        return Avancements;
+        return Avancements.toString();
     }
 
     @Override

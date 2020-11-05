@@ -9,52 +9,52 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface QuicklyService {
-    public List<Coc_apprenant> findApprenants();
+    List<Coc_apprenant> findApprenants(Long idEnseignant);
 
-    public Coc_apprenant selectApprenant(Long id);
+    Coc_apprenant selectApprenant(Long id);
 
-    public void attribuerExo(List<Coc_apprenant> apprs, Coc_exercice exo);
+    void setExercice(List<Coc_apprenant> apprs, Coc_exercice exo, Long idenseignant);
 
-    public void createModule(Long idCreator, Coc_module module);
+    void createModule(Long idCreator, Coc_module module);
 
-    public void updateModule(Long id);
+    void updateModule(Long id, Coc_module modules);
 
-    public List<Coc_module> findModules();
+    List<Coc_module> getModules();
 
-    public void createExercice(Long idModule, Coc_exercice exo);
+    void createExercice(Long idModule, Coc_exercice exo);
 
-    public void updateExercice(Long id);
+    void updateExercice(Long id, Coc_exercice exercice);
 
-    public List<Coc_exercice> findExercices();
+    List<Coc_exercice> findExercices();
 
-    public void createQuestion(Long idExo, Coc_question question);
+    void createQuestion(Long idExo, Coc_question question);
 
-    public void updateQuestion(Long id,Coc_question newQuestion);
+    void updateQuestion(Long id, Coc_question newQuestion);
 
-    public List<Coc_question> findQuestions(long IdExercice);
+    List<Coc_question> findQuestions(long IdExercice);
 
-    public void uploadImage(Long idQuestion, String urlImage);
+    void uploadImage(Long idQuestion, String urlImage);
 
-    public void uploadVoice(Long idQuestion, String urlVoice);
+    void uploadVoice(Long idQuestion, String urlVoice);
 
-    public void createReponse(Long idQuestion, Coc_reponse reponse);
+    void createReponse(Long idQuestion, Coc_reponse reponse);
 
-    public void updateReponse(Long id,Coc_reponse newReponse);
+    void updateReponse(Long id, Coc_reponse newReponse);
 
-    public List<Coc_reponse> findReponses(Long idExercice);
+    List<Coc_reponse> findReponses(Long idExercice);
 
-    public String getAvancementApprenant(List<Long> idApprenant);
+    String getAvancementApprenant(List<Long> idApprenant);
 
-    public Coc_niveau selectNiveau(Long id);
+    Coc_niveau selectNiveau(Long id);
 
-    public Coc_module selectModule(Long id);
+    Coc_module selectModule(Long id);
 
-    public Coc_exercice selectExercice(Long id);
+    Coc_exercice selectExercice(Long id);
 
-    public Coc_reponse selectReponse(Long id);
+    Coc_reponse selectReponse(Long id);
 
-    public String seeAvancement(Long idApprenant);
+    String seeAvancement(Long idApprenant);
 
-    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idExercice);
+    HashMap<Coc_question, Coc_reponse> reviewExercice(Long idExercice);
 
     }
