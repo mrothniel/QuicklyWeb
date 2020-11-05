@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -118,18 +119,22 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    public List<Coc_reponse> findReponses() {
-        return coc_reponseRepositories.findAll();
+    public List<Coc_reponse> findReponses(Long idExercice) {
+        List<Coc_reponse> list = new ArrayList<>();
+         for(Coc_reponse reponse : coc_reponseRepositories.findAll()){
+                 if(reponse.getCoc_question().getCoc_exercice().getId().equals(idExercice))
+                    list.add(reponse);
+         }
+         return list;
     }
 
     @Override
-    public String getAvancementApprenant(List<Integer> listeIdApprenant) {
-       /* String Avancements = "";
-        for(int id : listeIdApprenant){
-            Avancements += "\n Apprenant numero "+id+" = 1 / "+coc_ens_app_exerRepositories.getApprenantAvancement(id);
+    public String getAvancementApprenant(List<Long> listeIdApprenant) {
+        String Avancements = "";
+        for(Long id : listeIdApprenant) {
+            Avancements += "\n Apprenant numero " + id + " = 1 / " + coc_apprenantRepositories.getOne(id).getCoc_ens_app_exers().size();;
         }
-        return Avancements;*/
-       return null;
+        return Avancements;
     }
 
     @Override
@@ -154,16 +159,19 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public String seeAvancement(Long idApprenant) {
-        return null; //"1 / "+ coc_ens_app_exerRepositories.getApprenantAvancement(idApprenant);
+        return "1 / "+coc_apprenantRepositories.getOne(idApprenant).getCoc_ens_app_exers().size();
     }
 
     @Override
-    public HashMap<Coc_question, ArrayList<Coc_reponse>> reviewExercice() {
-      /* HashMap<Coc_question, ArrayList<Coc_reponse>> review= new HashMap<>();
-       coc_questionRepositories.findAll().forEach(coc_question ->
-              review.put(coc_question, coc_reponseRepositories.getReponsesfromQuestion(coc_question.getId()))
-        );
-        return review;*/
-      return null;
+    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idExercice) {
+       HashMap<Coc_question, Coc_reponse> review= new HashMap<>();
+       List<Coc_question> listQuestions = new ArrayList<>();
+       for(Coc_question question : coc_exerciceRepositories.getOne(idExercice).getCoc_questions()) {
+           for (Coc_reponse reponse : question.getCoc_reponses()) {
+               if (reponse.isCOC_EXACTITUDE())
+                   review.put(question, reponse);
+           }
+       }
+        return review;
     }
 }

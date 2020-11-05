@@ -6,5 +6,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface Coc_questionRepositories extends JpaRepository<Coc_question, Long> {
-   // public interface Coc_questionRepositories extends JpaRepository<Coc_question_dto, Long> {
 }

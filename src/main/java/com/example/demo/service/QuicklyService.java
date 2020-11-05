@@ -4,6 +4,7 @@ package com.example.demo.service;
 import com.example.demo.entities.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,9 +41,9 @@ public interface QuicklyService {
 
     public void updateReponse(Long id);
 
-    public List<Coc_reponse> findReponses();
+    public List<Coc_reponse> findReponses(Long idExercice);
 
-    public String getAvancementApprenant(List<Integer> idApprenant);
+    public String getAvancementApprenant(List<Long> idApprenant);
 
     public Coc_niveau selectNiveau(Long id);
 
@@ -54,6 +55,6 @@ public interface QuicklyService {
 
     public String seeAvancement(Long idApprenant);
 
-    public HashMap<Coc_question, ArrayList<Coc_reponse>> reviewExercice();
+    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idExercice);
 
     }
