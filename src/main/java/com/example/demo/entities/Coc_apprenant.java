@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @ToString
-public class Coc_apprenant {
+public class Coc_apprenant implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -95,4 +96,5 @@ public class Coc_apprenant {
     public void setCoc_ens_app_exers(Collection<Coc_ens_app_exer> coc_ens_app_exers) {
         this.coc_ens_app_exers = coc_ens_app_exers;
     }
+
 }

@@ -43,7 +43,7 @@ public interface QuicklyService {
 
     public List<Coc_reponse> findReponses(Long idExercice);
 
-    public String getAvancementApprenant(List<Long> idApprenant);
+    public String getAvancementApprenant(Long idEnseignant);
 
     public Coc_niveau selectNiveau(Long id);
 
@@ -51,10 +51,12 @@ public interface QuicklyService {
 
     public Coc_exercice selectExercice(Long id);
 
+    public Coc_question selectQuestion(Long id);
+
     public Coc_reponse selectReponse(Long id);
 
     public String seeAvancement(Long idApprenant);
 
-    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idExercice);
+    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idApprenant, Long idExercice);
 
     }

@@ -119,13 +119,13 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public List<Coc_question> findQuestions(long IdExercice) {
-        List<Coc_question> listExo = new ArrayList<>();
+        List<Coc_question> listQuestions = new ArrayList<>();
         for(Coc_question  question: coc_questionRepositories.findAll()){
             if (question.getCoc_exercice().getId().equals(IdExercice)){
-                listExo.add(question);
+                listQuestions.add(question);
             }
         }
-        return listExo;
+        return listQuestions;
     }
 
     @Override
@@ -163,7 +163,13 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    public String getAvancementApprenant(List<Long> listeIdApprenant) {
+    public String getAvancementApprenant(Long idEnseignant) {
+        //Je charge la liste de tous les apprenants de l'enseignant dont l'id est donné en paramètre
+        List<Long> listeIdApprenant = new ArrayList<>();
+        for(Coc_ens_app_exer exos : coc_ens_app_exerRepositories.findAll()){
+            if(exos.getCoc_enseignant().getId().equals(idEnseignant))
+                listeIdApprenant.add(exos.getCoc_apprenant().getId());
+        }
         StringBuilder Avancements = new StringBuilder();
         for(Long id : listeIdApprenant) {
             Avancements.append("\n Apprenant numero ").append(id).append(" = 1 / ").append(coc_apprenantRepositories.getOne(id).getCoc_ens_app_exers().size());
@@ -187,6 +193,11 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
+    public Coc_question selectQuestion(Long id) {
+        return coc_questionRepositories.getOne(id);
+    }
+
+    @Override
     public Coc_reponse selectReponse(Long id) {
         return coc_reponseRepositories.getOne(id);
     }
@@ -197,10 +208,16 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idExercice) {
+    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idApprenant, Long idExercice) {
        HashMap<Coc_question, Coc_reponse> review= new HashMap<>();
-       List<Coc_question> listQuestions = new ArrayList<>();
-       for(Coc_question question : coc_exerciceRepositories.getOne(idExercice).getCoc_questions()) {
+        //Je charge la liste de tous les exercices de l'apprenant dont l'id est donné en paramètre
+        List<Coc_question> listQuestions = new ArrayList<>();
+        for(Coc_ens_app_exer exos : coc_ens_app_exerRepositories.findAll()){
+//si dans la table ens_app_exer il y'a une ligne qui correspond en même temps à l'exercice et à l'apprenant, on charge ses questions dans la liste
+            if(exos.getCoc_apprenant().getId().equals(idApprenant) && exos.getCoc_exercice().getId().equals(idExercice))
+                listQuestions.addAll(exos.getCoc_exercice().getCoc_questions());
+        }
+       for(Coc_question question : listQuestions) {
            for (Coc_reponse reponse : question.getCoc_reponses()) {
                if (reponse.isCOC_EXACTITUDE())
                    review.put(question, reponse);

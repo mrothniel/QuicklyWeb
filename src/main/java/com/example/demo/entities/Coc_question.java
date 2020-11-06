@@ -6,11 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @ToString
-public class Coc_question {
+public class Coc_question implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String COC_INSTRUCTION;
@@ -19,7 +20,7 @@ public class Coc_question {
     private String COC_VOICE;
     private String COC_IMAGE;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Coc_exercice coc_exercice;
     @OneToMany
     private Collection<Coc_reponse> coc_reponses;

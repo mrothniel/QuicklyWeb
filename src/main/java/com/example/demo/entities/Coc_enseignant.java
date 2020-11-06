@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @ToString
-public class Coc_enseignant {
+public class Coc_enseignant implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String COC_ENSEIGNANT_nom;
