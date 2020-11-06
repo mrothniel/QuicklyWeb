@@ -96,7 +96,7 @@ public class QuicklyServiceImpl  implements QuicklyService{
         for(Coc_exercice  exercice : coc_exerciceRepositories.findAll()){
            if( exercice.getCoc_module().getId().equals( idModule)){
                listExo.add(exercice);
-           };
+           }
         }
         return listExo;
     }
