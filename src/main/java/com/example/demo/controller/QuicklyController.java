@@ -5,10 +5,7 @@ import com.example.demo.entities.Coc_apprenant;
 import com.example.demo.entities.Coc_enseignant;
 import com.example.demo.service.QuicklyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,9 +36,9 @@ public class QuicklyController {
     @Autowired
     QuicklyService quicklyService;
 
-    @RequestMapping(value = "/list/apprenant/{idEnseignant}", method = RequestMethod.GET, produces = "apllication/json")
+    @RequestMapping(value = "/list/apprenant/{idEnseignant}", method = RequestMethod.GET)
     public List<Coc_apprenant> getApprenantForOneEnseignant(@PathVariable Long idEnseignant){
-       Coc_enseignant e = coc_enseignantRepositories.findById(idEnseignant).get();
+       Coc_enseignant e = coc_enseignantRepositories.getOne(idEnseignant);
         return quicklyService.findApprenants(e.getId());
     }
 
