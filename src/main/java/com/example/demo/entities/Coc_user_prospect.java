@@ -1,16 +1,14 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.*;;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @ToString
-public class Coc_user_prospect implements Serializable {
+public class Coc_user_prospect {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String COC_PROSPECT_pseudo;
@@ -18,6 +16,7 @@ public class Coc_user_prospect implements Serializable {
     private String COC_PROSPECT_email;
     private String COC_PROSPECT_motDepasse;
     @OneToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Coc_niveau coc_niveau;
 
     public Long getId() {

@@ -1,16 +1,13 @@
 package com.example.demo.entities;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @ToString
-public class Coc_reponse implements Serializable {
+public class Coc_reponse {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String COC_LIBELLE;

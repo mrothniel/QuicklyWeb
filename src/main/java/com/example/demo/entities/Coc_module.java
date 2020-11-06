@@ -1,23 +1,23 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @ToString
-public class Coc_module implements Serializable {
+public class Coc_module {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String COC_LIBELLE;
     private String COC_AVANCEMENT_MODULE;
+    @OneToMany(mappedBy = "coc_module")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Collection<Coc_exercice> coc_exercices;
 
     public Long getId() {
         return id;
@@ -37,5 +37,13 @@ public class Coc_module implements Serializable {
 
     public void setCOC_AVANCEMENT_MODULE(String COC_AVANCEMENT_MODULE) {
         this.COC_AVANCEMENT_MODULE = COC_AVANCEMENT_MODULE;
+    }
+
+    public Collection<Coc_exercice> getCoc_exercices() {
+        return coc_exercices;
+    }
+
+    public void setCoc_exercices(Collection<Coc_exercice> coc_exercices) {
+        this.coc_exercices = coc_exercices;
     }
 }

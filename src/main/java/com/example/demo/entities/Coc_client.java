@@ -1,19 +1,16 @@
 package com.example.demo.entities;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @ToString
-public class Coc_client implements Serializable {
+public class Coc_client {
 
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

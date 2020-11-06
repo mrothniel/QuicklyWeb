@@ -1,17 +1,15 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @ToString
-public class Coc_question implements Serializable {
+public class Coc_question {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String COC_INSTRUCTION;
@@ -22,6 +20,7 @@ public class Coc_question implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Coc_exercice coc_exercice;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany
     private Collection<Coc_reponse> coc_reponses;
 
