@@ -14,7 +14,7 @@ public class Coc_exercice {
     private Long id;
     private String COC_LIBELLE;
     private String COC_AVANCEMENT_EXERCICE;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Coc_module coc_module;
     @OneToOne
     private Coc_niveau coc_niveau;

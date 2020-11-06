@@ -18,10 +18,10 @@ public class Coc_question {
     private String COC_VOICE;
     private String COC_IMAGE;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Coc_exercice coc_exercice;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Coc_reponse> coc_reponses;
 
     public Long getId() {
