@@ -34,7 +34,7 @@ public class QuicklyServiceImpl  implements QuicklyService{
     @Override
     public List<Coc_apprenant> findApprenants(Long idEnseignant) {
         //Optional<Coc_enseignant> enseignant = coc_enseignantRepositories.findById(idEnseignant);
-        List<Coc_apprenant> apprenantList = new LinkedList<>();
+        List<Coc_apprenant> apprenantList = new ArrayList<>();
         for(Coc_ens_app_exer ens_app_exer: coc_ens_app_exerRepositories.findAll()){
             if (ens_app_exer.getCoc_enseignant().getId().equals(idEnseignant)){
                 apprenantList.add(ens_app_exer.getCoc_apprenant());

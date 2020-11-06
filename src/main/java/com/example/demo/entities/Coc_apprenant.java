@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class Coc_apprenant {
     @OneToOne
     private Coc_niveau coc_niveau;
     @OneToMany(mappedBy = "coc_apprenant")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Coc_ens_app_exer> coc_ens_app_exers;
 
     public Long getId() {
