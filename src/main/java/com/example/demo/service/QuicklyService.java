@@ -3,15 +3,12 @@ package com.example.demo.service;
 
 import com.example.demo.entities.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public interface QuicklyService {
-    public List<Coc_apprenant> findApprenants(Long idEnseignant);
+    public Set<Coc_apprenant> findApprenants(Long idEnseignant);
 
-    public Coc_apprenant selectApprenant(Long id);
+    public Optional<Coc_apprenant> selectApprenant(Long id);
 
     public void setExercice(List<Coc_apprenant> apprs, Coc_exercice exo, Long idenseignant);
 
@@ -45,18 +42,23 @@ public interface QuicklyService {
 
     public String getAvancementApprenant(Long idEnseignant);
 
-    public Coc_niveau selectNiveau(Long id);
+    public Optional<Coc_niveau> selectNiveau(Long id);
 
-    public Coc_module selectModule(Long id);
+    public Optional<Coc_module> selectModule(Long id);
 
-    public Coc_exercice selectExercice(Long id);
+    public Optional<Coc_exercice> selectExercice(Long id);
 
-    public Coc_question selectQuestion(Long id);
+    public Optional<Coc_question> selectQuestion(Long id);
 
-    public Coc_reponse selectReponse(Long id);
+    public Optional<Coc_reponse> selectReponse(Long id);
 
     public String seeAvancement(Long idApprenant);
 
+    public Coc_reponse reponseExact(Long idQuestion);
+
+    public HashMap<Coc_module, Coc_exercice> findExercicesByApprenant(Long idApprenant);
+
     public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idApprenant, Long idExercice);
+  //  public List<Coc_question> reviewExercice(Long idApprenant, Long idExercice);
 
     }

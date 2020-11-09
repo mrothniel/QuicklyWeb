@@ -15,8 +15,10 @@ public class Coc_exercice {
     private String COC_LIBELLE;
     private String COC_AVANCEMENT_EXERCICE;
     @ManyToOne
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Coc_module coc_module;
     @OneToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Coc_niveau coc_niveau;
     @OneToMany(mappedBy = "coc_exercice")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -44,7 +46,6 @@ public class Coc_exercice {
     public void setCOC_AVANCEMENT_EXERCICE(String COC_AVANCEMENT_EXERCICE) {
         this.COC_AVANCEMENT_EXERCICE = COC_AVANCEMENT_EXERCICE;
     }
-
     public Coc_module getCoc_module() {
         return coc_module;
     }

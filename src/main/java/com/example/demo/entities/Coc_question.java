@@ -19,10 +19,11 @@ public class Coc_question {
     private String COC_IMAGE;
 
     @ManyToOne
-    private Coc_exercice coc_exercice;
-    @OneToMany
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Collection<Coc_reponse> coc_reponses;
+    private Coc_exercice coc_exercice;
+  /*  @OneToMany
+    @JsonProperty()
+    private Collection<Coc_reponse> coc_reponses;*/
 
     public Long getId() {
         return id;
@@ -67,6 +68,7 @@ public class Coc_question {
     public void setCoc_exercice(Coc_exercice coc_exercice) {
         this.coc_exercice = coc_exercice;
     }
+
     public String getCOC_IMAGE() {
         return COC_IMAGE;
     }
@@ -74,11 +76,12 @@ public class Coc_question {
     public void setCOC_IMAGE(String COC_IMAGE) {
         this.COC_IMAGE = COC_IMAGE;
     }
-    public Collection<Coc_reponse> getCoc_reponses() {
+
+   /* public Collection<Coc_reponse> getCoc_reponses() {
         return coc_reponses;
     }
 
     public void setCoc_reponses(Collection<Coc_reponse> coc_reponses) {
         this.coc_reponses = coc_reponses;
-    }
+    }*/
 }

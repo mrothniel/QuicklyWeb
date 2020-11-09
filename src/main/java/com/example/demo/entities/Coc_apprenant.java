@@ -19,8 +19,10 @@ public class Coc_apprenant {
     private String COC_APPRENANT_motdepasse;
     private String COC_APPRENANT_TEL;
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Coc_client client;
     @OneToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Coc_niveau coc_niveau;
     @OneToMany(mappedBy = "coc_apprenant")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

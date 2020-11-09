@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -37,13 +39,13 @@ public class QuicklyController {
     QuicklyService quicklyService;
 
     @RequestMapping(value = "/list/apprenant/{idEnseignant}", method = RequestMethod.GET)
-    public List<Coc_apprenant> getApprenantForOneEnseignant(@PathVariable Long idEnseignant){
+    public Set<Coc_apprenant> getApprenantForOneEnseignant(@PathVariable Long idEnseignant){
       // Coc_enseignant e = coc_enseignantRepositories.getOne(idEnseignant);
         return quicklyService.findApprenants(idEnseignant);
     }
 
     @RequestMapping(value = "/apprenant/{idApprenant}", method = RequestMethod.GET)
-    public Coc_apprenant getApprenantFromId(@PathVariable Long idApprenant){
+    public Optional<Coc_apprenant> getApprenantFromId(@PathVariable Long idApprenant){
         return quicklyService.selectApprenant(idApprenant);
     }
 
@@ -55,8 +57,8 @@ public class QuicklyController {
 
     @RequestMapping(value = "/list/question/{idExercice}", method = RequestMethod.GET)
     public List<Coc_question> getQuestionsByExercice(@PathVariable Long idExercice){
-        Coc_exercice e = coc_exerciceRepositories.getOne(idExercice);
-        return quicklyService.findQuestions(e.getId());
+        //Coc_exercice e = coc_exerciceRepositories.getOne(idExercice);
+        return quicklyService.findQuestions(idExercice);
     }
 
     @RequestMapping(value = "/list/reponse/{idQuestion}", method = RequestMethod.GET)
@@ -64,43 +66,51 @@ public class QuicklyController {
         return quicklyService.findReponses(idQuestion);
     }
 
-    @RequestMapping(value = "/list/avancements/{idModule}", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/avancements/{idEnseignant}", method = RequestMethod.GET)
     public String getAllApprenantsAvancementsByEnseignant(@PathVariable Long idEnseignant){
         return quicklyService.getAvancementApprenant(idEnseignant);
     }
 
     @RequestMapping(value = "/niveau/{idNiveau}", method = RequestMethod.GET)
-    public Coc_niveau getNiveauFromId(@PathVariable Long idNiveau){
+    public Optional<Coc_niveau> getNiveauFromId(@PathVariable Long idNiveau){
         return quicklyService.selectNiveau(idNiveau);
     }
 
     @RequestMapping(value = "/module/{idModule}", method = RequestMethod.GET)
-    public Coc_module getModuleFromId(@PathVariable Long idModule){
+    public Optional<Coc_module> getModuleFromId(@PathVariable Long idModule){
         return quicklyService.selectModule(idModule);
     }
 
     @RequestMapping(value = "/exercice/{idExercice}", method = RequestMethod.GET)
-    public Coc_exercice getExerciceFromId(@PathVariable Long idExercice){
+    public Optional<Coc_exercice> getExerciceFromId(@PathVariable Long idExercice){
         return quicklyService.selectExercice(idExercice);
     }
 
     @RequestMapping(value = "/question/{idQuestion}", method = RequestMethod.GET)
-    public Coc_question getQuestionFromId(@PathVariable Long idQuestion){
+    public Optional<Coc_question> getQuestionFromId(@PathVariable Long idQuestion){
         return quicklyService.selectQuestion(idQuestion);
     }
 
     @RequestMapping(value = "/reponse/{idReponse}", method = RequestMethod.GET)
-    public Coc_reponse getReponseFromId(@PathVariable Long idReponse){
+    public Optional<Coc_reponse> getReponseFromId(@PathVariable Long idReponse){
         return quicklyService.selectReponse(idReponse);
     }
 
-    @RequestMapping(value = "/avancement/{idModule}", method = RequestMethod.GET)
+    @RequestMapping(value = "/avancement/{idApprenant}", method = RequestMethod.GET)
     public String getAvancementByApprenant(@PathVariable Long idApprenant){
         return quicklyService.seeAvancement(idApprenant);
     }
 
-    @RequestMapping(value = "/review/{idApprenant}/{idExercice}", method = RequestMethod.GET)
-    public HashMap<Coc_question, Coc_reponse> reviewExercice(@PathVariable Long idApprenant, Long idExercice){
+   
+
+    @RequestMapping(value = "/apprenant/list/exercice/{idApprenant}", method = RequestMethod.GET)
+    public HashMap<Coc_module, Coc_exercice> findExosByApprenant(@PathVariable Long idApprenant){
+        return quicklyService.findExercicesByApprenant(idApprenant);
+    }
+
+    @RequestMapping(value = "/review/appr/{idApprenant}/exo/{idExercice}", method = RequestMethod.GET)
+    public HashMap<Coc_question, Coc_reponse> reviewExercice(@PathVariable Long idApprenant, @PathVariable Long idExercice){
+   // public List<Coc_question> reviewExercice(@PathVariable Long idApprenant, @PathVariable Long idExercice){
         return quicklyService.reviewExercice(idApprenant, idExercice);
     }
 

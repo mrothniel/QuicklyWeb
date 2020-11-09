@@ -8,35 +8,35 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class QuicklyServiceImpl  implements QuicklyService{
+public class QuicklyServiceImpl  implements QuicklyService {
 
     @Autowired
     Coc_clientRepositories coc_clientRepositories;
-     @Autowired
-     Coc_apprenantRepositories coc_apprenantRepositories;
-     @Autowired
-     Coc_enseignantRepositories coc_enseignantRepositories;
-     @Autowired
-     Coc_ens_app_exerRepositories coc_ens_app_exerRepositories;
-     @Autowired
-     Coc_exerciceRepositories coc_exerciceRepositories;
-     @Autowired
+    @Autowired
+    Coc_apprenantRepositories coc_apprenantRepositories;
+    @Autowired
+    Coc_enseignantRepositories coc_enseignantRepositories;
+    @Autowired
+    Coc_ens_app_exerRepositories coc_ens_app_exerRepositories;
+    @Autowired
+    Coc_exerciceRepositories coc_exerciceRepositories;
+    @Autowired
     Coc_moduleRepositories coc_moduleRepositories;
-     @Autowired
+    @Autowired
     Coc_niveauRepositories coc_niveauRepositories;
-     @Autowired
+    @Autowired
     Coc_questionRepositories coc_questionRepositories;
-     @Autowired
+    @Autowired
     Coc_reponseRepositories coc_reponseRepositories;
-     @Autowired
+    @Autowired
     Coc_user_prospectRepositories coc_user_prospectRepositories;
 
     @Override
-    public List<Coc_apprenant> findApprenants(Long idEnseignant) {
+    public Set<Coc_apprenant> findApprenants(Long idEnseignant) {
         //Optional<Coc_enseignant> enseignant = coc_enseignantRepositories.findById(idEnseignant);
-        List<Coc_apprenant> apprenantList = new ArrayList<>();
-        for(Coc_ens_app_exer ens_app_exer: coc_ens_app_exerRepositories.findAll()){
-            if (ens_app_exer.getCoc_enseignant().getId().equals(idEnseignant)){
+        Set<Coc_apprenant> apprenantList = new HashSet<>();
+        for (Coc_ens_app_exer ens_app_exer : coc_ens_app_exerRepositories.findAll()) {
+            if (ens_app_exer.getCoc_enseignant().getId().equals(idEnseignant)) {
                 apprenantList.add(ens_app_exer.getCoc_apprenant());
             }
         }
@@ -44,13 +44,13 @@ public class QuicklyServiceImpl  implements QuicklyService{
     }
 
     @Override
-    public Coc_apprenant selectApprenant(Long id) {
-        return coc_apprenantRepositories.getOne(id);
+    public Optional<Coc_apprenant> selectApprenant(Long id) {
+        return coc_apprenantRepositories.findById(id);
     }
 
     @Override
     public void setExercice(List<Coc_apprenant> apprenants, Coc_exercice exercice, Long idenseignant) {
-        for(Coc_apprenant apprenantList : apprenants ){
+        for (Coc_apprenant apprenantList : apprenants) {
             Coc_ens_app_exer exercicesEns = new Coc_ens_app_exer();
             exercicesEns.setCoc_apprenant(apprenantList);
             exercicesEns.setCoc_exercice(exercice);
@@ -93,10 +93,10 @@ public class QuicklyServiceImpl  implements QuicklyService{
     @Override
     public List<Coc_exercice> findExercices(Long idModule) {
         List<Coc_exercice> listExo = new ArrayList<>();
-        for(Coc_exercice  exercice : coc_exerciceRepositories.findAll()){
-           if( exercice.getCoc_module().getId().equals( idModule)){
-               listExo.add(exercice);
-           }
+        for (Coc_exercice exercice : coc_exerciceRepositories.findAll()) {
+            if (exercice.getCoc_module().getId().equals(idModule)) {
+                listExo.add(exercice);
+            }
         }
         return listExo;
     }
@@ -120,8 +120,8 @@ public class QuicklyServiceImpl  implements QuicklyService{
     @Override
     public List<Coc_question> findQuestions(long IdExercice) {
         List<Coc_question> listQuestions = new ArrayList<>();
-        for(Coc_question  question: coc_questionRepositories.findAll()){
-            if (question.getCoc_exercice().getId().equals(IdExercice)){
+        for (Coc_question question : coc_questionRepositories.findAll()) {
+            if (question.getCoc_exercice().getId().equals(IdExercice)) {
                 listQuestions.add(question);
             }
         }
@@ -130,7 +130,7 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public void uploadImage(Long idQuestion, String urlImage) {
-     coc_questionRepositories.getOne(idQuestion).setCOC_IMAGE( urlImage);
+        coc_questionRepositories.getOne(idQuestion).setCOC_IMAGE(urlImage);
     }
 
     @Override
@@ -140,89 +140,127 @@ public class QuicklyServiceImpl  implements QuicklyService{
 
     @Override
     public void createReponse(Long idQuestion, Coc_reponse newReponse) {
-        Coc_question  question  = coc_questionRepositories.getOne(idQuestion);
-         question.getCoc_reponses().add(newReponse);
-         newReponse.setCoc_question(question);
-         coc_reponseRepositories.save(newReponse);
+      /*  Coc_question question = coc_questionRepositories.getOne(idQuestion);
+       // question.getCoc_reponses().add(newReponse);
+        newReponse.setCoc_question(question);
+        coc_reponseRepositories.save(newReponse);*/
     }
 
     @Override
-    public void updateReponse(Long id,Coc_reponse newReponse) {
+    public void updateReponse(Long id, Coc_reponse newReponse) {
         coc_reponseRepositories.getOne(id).setCOC_LIBELLE(newReponse.getCOC_LIBELLE());
-        coc_reponseRepositories.getOne(id).setCOC_EXACTITUDE( newReponse.isCOC_EXACTITUDE());
+        coc_reponseRepositories.getOne(id).setCOC_EXACTITUDE(newReponse.isCOC_EXACTITUDE());
     }
 
     @Override
     public List<Coc_reponse> findReponses(Long idExercice) {
         List<Coc_reponse> list = new ArrayList<>();
-         for(Coc_reponse reponse : coc_reponseRepositories.findAll()){
-                 if(reponse.getCoc_question().getCoc_exercice().getId().equals(idExercice))
-                    list.add(reponse);
-         }
-         return list;
+        for (Coc_reponse reponse : coc_reponseRepositories.findAll()) {
+            if (reponse.getCoc_question().getCoc_exercice().getId().equals(idExercice))
+                list.add(reponse);
+        }
+        return list;
     }
 
     @Override
     public String getAvancementApprenant(Long idEnseignant) {
         //Je charge la liste de tous les apprenants de l'enseignant dont l'id est donné en paramètre
-        List<Long> listeIdApprenant = new ArrayList<>();
-        for(Coc_ens_app_exer exos : coc_ens_app_exerRepositories.findAll()){
-            if(exos.getCoc_enseignant().getId().equals(idEnseignant))
+        Set<Long> listeIdApprenant = new HashSet<>(); //Set n'accepte pas de soublons donc Ok pour une classe d'association
+        for (Coc_ens_app_exer exos : coc_ens_app_exerRepositories.findAll()) {
+            if (exos.getCoc_enseignant().getId().equals(idEnseignant))
                 listeIdApprenant.add(exos.getCoc_apprenant().getId());
         }
         StringBuilder Avancements = new StringBuilder();
-        for(Long id : listeIdApprenant) {
+        for (Long id : listeIdApprenant) {
             Avancements.append("\n Apprenant numero ").append(id).append(" = 1 / ").append(coc_apprenantRepositories.getOne(id).getCoc_ens_app_exers().size());
         }
         return Avancements.toString();
     }
 
     @Override
-    public Coc_niveau selectNiveau(Long id) {
-        return coc_niveauRepositories.getOne(id);
+    public Optional<Coc_niveau> selectNiveau(Long id) {
+        return coc_niveauRepositories.findById(id);
     }
 
     @Override
-    public Coc_module selectModule(Long id) {
-        return coc_moduleRepositories.getOne(id);
+    public Optional<Coc_module> selectModule(Long id) {
+        return coc_moduleRepositories.findById(id);
     }
 
     @Override
-    public Coc_exercice selectExercice(Long id) {
-        return coc_exerciceRepositories.getOne(id);
+    public Optional<Coc_exercice> selectExercice(Long id) {
+        return coc_exerciceRepositories.findById(id);
     }
 
     @Override
-    public Coc_question selectQuestion(Long id) {
-        return coc_questionRepositories.getOne(id);
+    public Optional<Coc_question> selectQuestion(Long id) {
+        return coc_questionRepositories.findById(id);
     }
 
     @Override
-    public Coc_reponse selectReponse(Long id) {
-        return coc_reponseRepositories.getOne(id);
+    public Optional<Coc_reponse> selectReponse(Long id) {
+        return coc_reponseRepositories.findById(id);
     }
 
     @Override
     public String seeAvancement(Long idApprenant) {
-        return "1 / "+coc_apprenantRepositories.getOne(idApprenant).getCoc_ens_app_exers().size();
+        return "1 / " + coc_apprenantRepositories.getOne(idApprenant).getCoc_ens_app_exers().size();
+    }
+
+    @Override
+    public Coc_reponse reponseExact(Long idQuestion) {
+        for(Coc_reponse reponse: coc_reponseRepositories.findAll()){
+            if(reponse.getCoc_question().getId().equals(idQuestion)&&reponse.isCOC_EXACTITUDE().equals("1"))
+                return reponse;
+        }
+        return null;
+    }
+
+    @Override
+    public HashMap<Coc_module, Coc_exercice> findExercicesByApprenant(Long idApprenant) {
+        HashMap<Coc_module, Coc_exercice> listexos = new HashMap<>();
+        HashMap<Coc_module, Coc_exercice> verif = new HashMap<>();
+        for (Coc_ens_app_exer ens_app_exer : coc_ens_app_exerRepositories.findAll()) {
+            if (ens_app_exer.getCoc_apprenant().getId().equals(idApprenant))
+                listexos.put(ens_app_exer.getCoc_exercice().getCoc_module(), ens_app_exer.getCoc_exercice());
+        }
+
+        return listexos; /*
+        HashMap<Coc_module, Coc_exercice> listExo = new HashMap<>();
+        for (Coc_ens_app_exer coc_ens_app_exer : coc_ens_app_exerRepositories.findAll()) {
+            if (coc_ens_app_exer.getCoc_apprenant().getId().equals(idApprenant)){
+                listExo.put(coc_ens_app_exer.getCoc_exercice().getCoc_module(),coc_ens_app_exer.getCoc_exercice());
+            }
+        }
+        return listExo; */
+
     }
 
     @Override
     public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idApprenant, Long idExercice) {
-       HashMap<Coc_question, Coc_reponse> review= new HashMap<>();
-        //Je charge la liste de tous les exercices de l'apprenant dont l'id est donné en paramètre
-        List<Coc_question> listQuestions = new ArrayList<>();
-        for(Coc_ens_app_exer exos : coc_ens_app_exerRepositories.findAll()){
+       // public List<Coc_question> reviewExercice (Long idApprenant, Long idExercice){
+            HashMap<Coc_question, Coc_reponse> review = new HashMap<>();
+            StringBuilder reviews = new StringBuilder();
+            //Je charge la liste de tous les exercices de l'apprenant dont l'id est donné en paramètre
+            List<Coc_question> listQuestions = new ArrayList<>();
+            listQuestions = this.findQuestions(idExercice);
+        List<Coc_reponse> listReponses = new ArrayList<>();
+        listReponses = this.findReponses(idExercice);
+         /*   for (Coc_ens_app_exer exos : coc_ens_app_exerRepositories.findAll()) {
 //si dans la table ens_app_exer il y'a une ligne qui correspond en même temps à l'exercice et à l'apprenant, on charge ses questions dans la liste
-            if(exos.getCoc_apprenant().getId().equals(idApprenant) && exos.getCoc_exercice().getId().equals(idExercice))
-                listQuestions.addAll(exos.getCoc_exercice().getCoc_questions());
+                if (exos.getCoc_apprenant().getId().equals(idApprenant) && exos.getCoc_exercice().getId().equals(idExercice))
+                    listQuestions.addAll(exos.getCoc_exercice().getCoc_questions());
+            }*/
+        for (Coc_question question : listQuestions) {
+            for (Coc_reponse reponse : listReponses) {
+                    if (reponse.getCoc_question().getId().equals(question.getId())&& reponse.isCOC_EXACTITUDE().equals("1")) {
+                        //reviews.append(question).append(question.getId()).append("\n");
+                        review.put(question, reponse);
+                    }
+                }
+            }
+            //reviews.append(listQuestions);
+             //reviews.append(listQuestions.toString());
+            return review;
         }
-       for(Coc_question question : listQuestions) {
-           for (Coc_reponse reponse : question.getCoc_reponses()) {
-               if (reponse.isCOC_EXACTITUDE())
-                   review.put(question, reponse);
-           }
-       }
-        return review;
     }
-}

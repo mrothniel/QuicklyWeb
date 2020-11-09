@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -11,8 +12,9 @@ public class Coc_reponse {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String COC_LIBELLE;
-    private boolean COC_EXACTITUDE;
-    @ManyToOne
+    private String COC_EXACTITUDE;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Coc_question coc_question;
 
     public Long getId() {
@@ -27,11 +29,11 @@ public class Coc_reponse {
         this.COC_LIBELLE = COC_LIBELLE;
     }
 
-    public boolean isCOC_EXACTITUDE() {
+    public String isCOC_EXACTITUDE() {
         return COC_EXACTITUDE;
     }
 
-    public void setCOC_EXACTITUDE(boolean COC_EXACTITUDE) {
+    public void setCOC_EXACTITUDE(String COC_EXACTITUDE) {
         this.COC_EXACTITUDE = COC_EXACTITUDE;
     }
 
