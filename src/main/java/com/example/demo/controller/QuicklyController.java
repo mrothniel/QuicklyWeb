@@ -101,7 +101,10 @@ public class QuicklyController {
         return quicklyService.seeAvancement(idApprenant);
     }
 
-   
+    @RequestMapping(value = "/reponseExacte/{idQuestion}", method = RequestMethod.GET)
+    public Coc_reponse reponseExacte(@PathVariable Long idQuestion){
+        return quicklyService.reponseExacte(idQuestion);
+    }
 
     @RequestMapping(value = "/apprenant/list/exercice/{idApprenant}", method = RequestMethod.GET)
     public HashMap<Coc_module, Coc_exercice> findExosByApprenant(@PathVariable Long idApprenant){
@@ -109,8 +112,8 @@ public class QuicklyController {
     }
 
     @RequestMapping(value = "/review/appr/{idApprenant}/exo/{idExercice}", method = RequestMethod.GET)
-    public HashMap<Coc_question, Coc_reponse> reviewExercice(@PathVariable Long idApprenant, @PathVariable Long idExercice){
-   // public List<Coc_question> reviewExercice(@PathVariable Long idApprenant, @PathVariable Long idExercice){
+    //public HashMap<String, Coc_reponse> reviewExercice(@PathVariable Long idApprenant, @PathVariable Long idExercice){
+    public List<Coc_reponse> reviewExercice(@PathVariable Long idApprenant, @PathVariable Long idExercice){
         return quicklyService.reviewExercice(idApprenant, idExercice);
     }
 

@@ -54,11 +54,11 @@ public interface QuicklyService {
 
     public String seeAvancement(Long idApprenant);
 
-    public Coc_reponse reponseExact(Long idQuestion);
+    public Coc_reponse reponseExacte(Long idQuestion);
 
     public HashMap<Coc_module, Coc_exercice> findExercicesByApprenant(Long idApprenant);
 
-    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idApprenant, Long idExercice);
-  //  public List<Coc_question> reviewExercice(Long idApprenant, Long idExercice);
+    //public HashMap<String, Coc_reponse> reviewExercice(Long idApprenant, Long idExercice);
+    public List<Coc_reponse> reviewExercice(Long idApprenant, Long idExercice);
 
     }

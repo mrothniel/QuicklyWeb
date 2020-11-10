@@ -13,8 +13,8 @@ public class Coc_reponse {
     private Long id;
     private String COC_LIBELLE;
     private String COC_EXACTITUDE;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne //(fetch = FetchType.LAZY)
+   // @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Coc_question coc_question;
 
     public Long getId() {

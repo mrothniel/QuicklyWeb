@@ -208,7 +208,7 @@ public class QuicklyServiceImpl  implements QuicklyService {
     }
 
     @Override
-    public Coc_reponse reponseExact(Long idQuestion) {
+    public Coc_reponse reponseExacte(Long idQuestion) {
         for(Coc_reponse reponse: coc_reponseRepositories.findAll()){
             if(reponse.getCoc_question().getId().equals(idQuestion)&&reponse.isCOC_EXACTITUDE().equals("1"))
                 return reponse;
@@ -237,30 +237,43 @@ public class QuicklyServiceImpl  implements QuicklyService {
     }
 
     @Override
-    public HashMap<Coc_question, Coc_reponse> reviewExercice(Long idApprenant, Long idExercice) {
-       // public List<Coc_question> reviewExercice (Long idApprenant, Long idExercice){
-            HashMap<Coc_question, Coc_reponse> review = new HashMap<>();
-            StringBuilder reviews = new StringBuilder();
+   // public HashMap<String, Coc_reponse> reviewExercice(Long idApprenant, Long idExercice) {
+        public List<Coc_reponse> reviewExercice (Long idApprenant, Long idExercice){
+            HashMap<String, Coc_reponse> review = new HashMap<>();
+            String reviews = "";
             //Je charge la liste de tous les exercices de l'apprenant dont l'id est donné en paramètre
             List<Coc_question> listQuestions = new ArrayList<>();
-            listQuestions = this.findQuestions(idExercice);
-        List<Coc_reponse> listReponses = new ArrayList<>();
-        listReponses = this.findReponses(idExercice);
-         /*   for (Coc_ens_app_exer exos : coc_ens_app_exerRepositories.findAll()) {
+           // listQuestions = this.findQuestions(idExercice);
+            List<Coc_reponse> listReponses = new ArrayList<>();
+
+           for (Coc_ens_app_exer exos : coc_ens_app_exerRepositories.findAll()) {
 //si dans la table ens_app_exer il y'a une ligne qui correspond en même temps à l'exercice et à l'apprenant, on charge ses questions dans la liste
-                if (exos.getCoc_apprenant().getId().equals(idApprenant) && exos.getCoc_exercice().getId().equals(idExercice))
-                    listQuestions.addAll(exos.getCoc_exercice().getCoc_questions());
-            }*/
+               if (exos.getCoc_apprenant().getId().equals(idApprenant) && exos.getCoc_exercice().getId().equals(idExercice))
+                   listQuestions.addAll(exos.getCoc_exercice().getCoc_questions());
+           }
+         /*  Iterator<Coc_question> itquestion = listQuestions.iterator();
+           while (itquestion.hasNext()){
+               itquestion.next();
+               reviews += "Question numero: "+itquestion.next().getId()+" Reponse: "+reponseExacte(itquestion.next().getId());
+               //review.put("Question numero"+itquestion.next().getId(), reponseExacte(itquestion.next().getId()));
+               listQuestions.add(itquestion.next());
+               listReponses.add(reponseExacte(itquestion.next().getId()));
+           }
+*/
         for (Coc_question question : listQuestions) {
-            for (Coc_reponse reponse : listReponses) {
-                    if (reponse.getCoc_question().getId().equals(question.getId())&& reponse.isCOC_EXACTITUDE().equals("1")) {
+                    listReponses.add(reponseExacte(question.getId()));
+        }
+           // review.put(question, reponseExacte(question.getId()));
+        //review.put(listQuestions.get(0), reponseExacte(listQuestions.get(0).getId()));
+           // for (Coc_reponse reponse : listReponses) {
+                    //if (reponse.getCoc_question().getId().equals(question.getId())&& reponse.isCOC_EXACTITUDE().equals("1")) {
                         //reviews.append(question).append(question.getId()).append("\n");
-                        review.put(question, reponse);
-                    }
-                }
-            }
+
+                  //  }
+               // }
+         //   }
             //reviews.append(listQuestions);
              //reviews.append(listQuestions.toString());
-            return review;
+            return listReponses;
         }
     }
