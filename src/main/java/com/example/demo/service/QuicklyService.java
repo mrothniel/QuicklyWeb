@@ -58,7 +58,6 @@ public interface QuicklyService {
 
     public HashMap<Coc_module, Coc_exercice> findExercicesByApprenant(Long idApprenant);
 
-    //public HashMap<String, Coc_reponse> reviewExercice(Long idApprenant, Long idExercice);
     public List<Coc_reponse> reviewExercice(Long idApprenant, Long idExercice);
 
     }

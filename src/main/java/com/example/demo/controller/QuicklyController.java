@@ -112,7 +112,6 @@ public class QuicklyController {
     }
 
     @RequestMapping(value = "/review/appr/{idApprenant}/exo/{idExercice}", method = RequestMethod.GET)
-    //public HashMap<String, Coc_reponse> reviewExercice(@PathVariable Long idApprenant, @PathVariable Long idExercice){
     public List<Coc_reponse> reviewExercice(@PathVariable Long idApprenant, @PathVariable Long idExercice){
         return quicklyService.reviewExercice(idApprenant, idExercice);
     }
