@@ -1,41 +1,50 @@
 package com.example.demo.dto;
 
-import com.example.demo.entities.Coc_module;
+import com.example.demo.entities.Coc_lecon;
 import com.example.demo.entities.Coc_niveau;
 
 public class Coc_exercice_dto {
     private Long id;
-    private String COC_LIBELLE;
-    private String COC_AVANCEMENT_EXERCICE;
-    private Coc_module coc_module;
+    private String coc_type_exo;
+    private String coc_question;
+    private String coc_answer;
+    private Coc_lecon coc_lecon;
     private Coc_niveau coc_niveau;
 
     public Long getId() {
         return id;
     }
 
-    public String getCOC_LIBELLE() {
-        return COC_LIBELLE;
+    public String getCoc_type_exo() {
+        return coc_type_exo;
     }
 
-    public void setCOC_LIBELLE(String COC_LIBELLE) {
-        this.COC_LIBELLE = COC_LIBELLE;
+    public void setCoc_type_exo(String coc_type_exo) {
+        this.coc_type_exo = coc_type_exo;
     }
 
-    public String getCOC_AVANCEMENT_EXERCICE() {
-        return COC_AVANCEMENT_EXERCICE;
+    public String getCoc_question() {
+        return coc_question;
     }
 
-    public void setCOC_AVANCEMENT_EXERCICE(String COC_AVANCEMENT_EXERCICE) {
-        this.COC_AVANCEMENT_EXERCICE = COC_AVANCEMENT_EXERCICE;
+    public void setCoc_question(String coc_question) {
+        this.coc_question = coc_question;
     }
 
-    public Coc_module getCoc_module() {
-        return coc_module;
+    public String getCoc_answer() {
+        return coc_answer;
     }
 
-    public void setCoc_module(Coc_module coc_module) {
-        this.coc_module = coc_module;
+    public void setCoc_answer(String coc_answer) {
+        this.coc_answer = coc_answer;
+    }
+
+    public Coc_lecon getCoc_lecon() {
+        return coc_lecon;
+    }
+
+    public void setCoc_lecon(Coc_lecon coc_lecon) {
+        this.coc_lecon = coc_lecon;
     }
 
     public Coc_niveau getCoc_niveau() {

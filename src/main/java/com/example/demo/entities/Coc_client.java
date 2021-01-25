@@ -1,12 +1,12 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @ToString
@@ -24,6 +24,9 @@ public class Coc_client {
   private String COC_CLIENT_adresse;
   private String COC_CLIENT_cpprivate;
   private String COC_CLIENT_ville;
+  @OneToMany(mappedBy = "coc_client")
+  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+  private Collection<Coc_apprenant> coc_apprenants;
 
   public Long getId() {
     return id;
@@ -107,5 +110,13 @@ public class Coc_client {
 
   public void setCOC_CLIENT_ville(String COC_CLIENT_ville) {
     this.COC_CLIENT_ville = COC_CLIENT_ville;
+  }
+
+  public Collection<Coc_apprenant> getCoc_apprenants() {
+    return coc_apprenants;
+  }
+
+  public void setCoc_apprenants(Collection<Coc_apprenant> coc_apprenants) {
+    this.coc_apprenants = coc_apprenants;
   }
 }

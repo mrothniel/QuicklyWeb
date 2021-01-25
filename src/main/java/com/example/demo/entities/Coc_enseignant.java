@@ -21,7 +21,7 @@ public class Coc_enseignant {
     private String COC_ENSEIGNANT_etat;
     @OneToMany(mappedBy = "coc_enseignant")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Collection<Coc_ens_app_exer> coc_ens_app_exers;
+    private Collection<Coc_ens_appr_lecon> coc_ens_appr_lecon;
 
 
     public Long getId() {
@@ -84,11 +84,11 @@ public class Coc_enseignant {
         this.COC_ENSEIGNANT_etat = COC_ENSEIGNANT_etat;
     }
 
-    public Collection<Coc_ens_app_exer> getCoc_ens_app_exers() {
-        return coc_ens_app_exers;
+    public Collection<Coc_ens_appr_lecon> getCoc_ens_appr_lecon() {
+        return coc_ens_appr_lecon;
     }
 
-    public void setCoc_ens_app_exers(Collection<Coc_ens_app_exer> coc_ens_app_exers) {
-        this.coc_ens_app_exers = coc_ens_app_exers;
+    public void setCoc_ens_appr_lecon(Collection<Coc_ens_appr_lecon> coc_ens_appr_lecon) {
+        this.coc_ens_appr_lecon = coc_ens_appr_lecon;
     }
 }

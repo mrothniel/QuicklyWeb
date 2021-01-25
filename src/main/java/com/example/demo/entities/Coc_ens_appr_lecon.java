@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor @AllArgsConstructor @ToString
-public class Coc_ens_app_exer {
+public class Coc_ens_appr_lecon {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
@@ -19,7 +19,9 @@ public class Coc_ens_app_exer {
     private Coc_apprenant coc_apprenant;
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Coc_exercice coc_exercice;
+    private Coc_lecon coc_lecon;
+
+    private long coc_score;
 
     public Long getId() {
         return id;
@@ -41,11 +43,19 @@ public class Coc_ens_app_exer {
         this.coc_apprenant = coc_apprenant;
     }
 
-    public Coc_exercice getCoc_exercice() {
-        return coc_exercice;
+    public Coc_lecon getCoc_lecon() {
+        return coc_lecon;
     }
 
-    public void setCoc_exercice(Coc_exercice coc_exercice) {
-        this.coc_exercice = coc_exercice;
+    public void setCoc_lecon(Coc_lecon coc_lecon) {
+        this.coc_lecon = coc_lecon;
+    }
+
+    public long getCoc_score() {
+        return coc_score;
+    }
+
+    public void setCoc_score(long coc_score) {
+        this.coc_score = coc_score;
     }
 }

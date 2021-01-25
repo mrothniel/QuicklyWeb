@@ -4,11 +4,12 @@ import com.example.demo.entities.Coc_apprenant;
 import com.example.demo.entities.Coc_enseignant;
 import com.example.demo.entities.Coc_exercice;
 
-public class Coc_ens_app_exer_dto {
+public class Coc_ens_appr_lecon_dto {
     private Long id;
     private Coc_enseignant coc_enseignant;
     private Coc_apprenant coc_apprenant;
     private Coc_exercice coc_exercice;
+    private long coc_score;
 
     public Long getId() {
         return id;
@@ -36,5 +37,13 @@ public class Coc_ens_app_exer_dto {
 
     public void setCoc_exercice(Coc_exercice coc_exercice) {
         this.coc_exercice = coc_exercice;
+    }
+
+    public long getCoc_score() {
+        return coc_score;
+    }
+
+    public void setCoc_score(long coc_score) {
+        this.coc_score = coc_score;
     }
 }

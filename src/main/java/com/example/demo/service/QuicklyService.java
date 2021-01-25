@@ -10,54 +10,50 @@ public interface QuicklyService {
 
     public Optional<Coc_apprenant> selectApprenant(Long id);
 
-    public void setExercice(List<Coc_apprenant> apprs, Coc_exercice exo, Long idenseignant);
+    public void setExercice(List<Coc_apprenant> apprs, Coc_lecon lecon, Long idenseignant);
 
-    public void createModule(Long idCreator, Coc_module module);
+    public void createLecon(Long idCreator, Coc_lecon lecon);
 
-    public void updateModule(Long id, Coc_module modules);
+    public void updateLecon(Long id, Coc_lecon lecon);
 
-    public List<Coc_module> getModules();
+    public List<Coc_lecon> getLecons();
 
-    public void createExercice(Long idModule, Coc_exercice exo);
+    public void createExercice(Long idLecon, Coc_exercice exo);
 
     public void updateExercice(Long id, Coc_exercice exercice);
 
-    public List<Coc_exercice> findExercices(Long idModule);
+    public void uploadImage(Long idSuggestion, String urlImage);
 
-    public void createQuestion(Long idExo, Coc_question question);
+    public void uploadVoice(Long idSuggestion, String urlVoice);
 
-    public void updateQuestion(Long id,Coc_question newQuestion);
+    public void createSuggestion(Long idExo, Coc_suggestion suggestion);
 
-    public List<Coc_question> findQuestions(long IdExercice);
+    public void updateSuggestion(Long id, Coc_suggestion newSuggestion);
 
-    public void uploadImage(Long idQuestion, String urlImage);
-
-    public void uploadVoice(Long idQuestion, String urlVoice);
-
-    public void createReponse(Long idQuestion, Coc_reponse reponse);
-
-    public void updateReponse(Long id,Coc_reponse newReponse);
-
-    public List<Coc_reponse> findReponses(Long idExercice);
+    public List<Coc_suggestion> findSuggestions(Long idExercice);
 
     public String getAvancementApprenant(Long idEnseignant);
 
     public Optional<Coc_niveau> selectNiveau(Long id);
 
-    public Optional<Coc_module> selectModule(Long id);
+    public Optional<Coc_lecon> selectLecon(Long id);
 
     public Optional<Coc_exercice> selectExercice(Long id);
 
-    public Optional<Coc_question> selectQuestion(Long id);
+    public Optional<Coc_suggestion> selectSuggestion(Long id);
 
-    public Optional<Coc_reponse> selectReponse(Long id);
+    public long getScore(Long idApprenant, Long idLecon);
 
-    public String seeAvancement(Long idApprenant);
+    public TreeSet<Coc_exercice> getExercicesOfApprenant(Long idApprenant, Long idLecon);
 
-    public Coc_reponse reponseExacte(Long idQuestion);
+    public HashMap<Coc_lecon, Coc_exercice> findExercicesByApprenant(Long idApprenant);
 
-    public HashMap<Coc_module, Coc_exercice> findExercicesByApprenant(Long idApprenant);
+    public List<Coc_suggestion> reviewExercice(Long idApprenant, Long idExercice);
 
-    public List<Coc_reponse> reviewExercice(Long idApprenant, Long idExercice);
+    public TreeSet<Coc_lecon> getAllLecons(Long idApprenant);
+
+    public Optional<Coc_apprenant> connection(Long idUserProspect);
+
+    public boolean isClient(Long idApprenant);
 
     }

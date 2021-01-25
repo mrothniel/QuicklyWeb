@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import com.example.demo.entities.Coc_apprenant;
 import com.example.demo.entities.Coc_niveau;
 
 public class Coc_user_prospect_dto {
@@ -9,6 +10,7 @@ public class Coc_user_prospect_dto {
     private String COC_PROSPECT_email;
     private String COC_PROSPECT_motDepasse;
     private Coc_niveau coc_niveau;
+    private Coc_apprenant coc_apprenant;
 
     public Long getId() {
         return id;
@@ -52,5 +54,13 @@ public class Coc_user_prospect_dto {
 
     public void setCoc_niveau(Coc_niveau coc_niveau) {
         this.coc_niveau = coc_niveau;
+    }
+
+    public Coc_apprenant getCoc_apprenant() {
+        return coc_apprenant;
+    }
+
+    public void setCoc_apprenant(Coc_apprenant coc_apprenant) {
+        this.coc_apprenant = coc_apprenant;
     }
 }

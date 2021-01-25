@@ -15,9 +15,12 @@ public class Coc_user_prospect {
     private String COC_PROSPOECT_tel;
     private String COC_PROSPECT_email;
     private String COC_PROSPECT_motDepasse;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Coc_niveau coc_niveau;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Coc_apprenant coc_apprenant;
 
     public Long getId() {
         return id;
@@ -61,5 +64,13 @@ public class Coc_user_prospect {
 
     public void setCoc_niveau(Coc_niveau coc_niveau) {
         this.coc_niveau = coc_niveau;
+    }
+
+    public Coc_apprenant getCoc_apprenant() {
+        return coc_apprenant;
+    }
+
+    public void setCoc_apprenant(Coc_apprenant coc_apprenant) {
+        this.coc_apprenant = coc_apprenant;
     }
 }

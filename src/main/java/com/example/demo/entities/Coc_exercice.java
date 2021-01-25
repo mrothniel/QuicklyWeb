@@ -6,52 +6,60 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Comparator;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @ToString
-public class Coc_exercice {
+public class Coc_exercice implements Comparable<Coc_exercice> {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String COC_LIBELLE;
-    private String COC_AVANCEMENT_EXERCICE;
+    private String coc_type_exo;
+    private String coc_question;
+    private String coc_answer;
     @ManyToOne
-    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Coc_module coc_module;
-    @OneToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Coc_lecon coc_lecon;
+    @OneToOne(fetch = FetchType.LAZY)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Coc_niveau coc_niveau;
     @OneToMany(mappedBy = "coc_exercice")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Collection<Coc_ens_app_exer> coc_ens_app_exers;
-    @OneToMany(mappedBy = "coc_exercice")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Collection<Coc_question>coc_questions;
+    private Collection<Coc_suggestion>coc_suggestions;
 
     public Long getId() {
         return id;
     }
 
-    public String getCOC_LIBELLE() {
-        return COC_LIBELLE;
+    public String getCoc_type_exo() {
+        return coc_type_exo;
     }
 
-    public void setCOC_LIBELLE(String COC_LIBELLE) {
-        this.COC_LIBELLE = COC_LIBELLE;
+    public void setCoc_type_exo(String coc_type_exo) {
+        this.coc_type_exo = coc_type_exo;
     }
 
-    public String getCOC_AVANCEMENT_EXERCICE() {
-        return COC_AVANCEMENT_EXERCICE;
+    public String getCoc_question() {
+        return coc_question;
     }
 
-    public void setCOC_AVANCEMENT_EXERCICE(String COC_AVANCEMENT_EXERCICE) {
-        this.COC_AVANCEMENT_EXERCICE = COC_AVANCEMENT_EXERCICE;
-    }
-    public Coc_module getCoc_module() {
-        return coc_module;
+    public void setCoc_question(String coc_question) {
+        this.coc_question = coc_question;
     }
 
-    public void setCoc_module(Coc_module coc_module) {
-        this.coc_module = coc_module;
+    public String getCoc_answer() {
+        return coc_answer;
+    }
+
+    public void setCoc_answer(String coc_answer) {
+        this.coc_answer = coc_answer;
+    }
+
+    public Coc_lecon getCoc_lecon() {
+        return coc_lecon;
+    }
+
+    public void setCoc_lecon(Coc_lecon coc_lecon) {
+        this.coc_lecon = coc_lecon;
     }
 
     public Coc_niveau getCoc_niveau() {
@@ -62,19 +70,16 @@ public class Coc_exercice {
         this.coc_niveau = coc_niveau;
     }
 
-    public Collection<Coc_ens_app_exer> getCoc_ens_app_exers() {
-        return coc_ens_app_exers;
+    public Collection<Coc_suggestion> getCoc_suggestions() {
+        return coc_suggestions;
     }
 
-    public void setCoc_ens_app_exers(Collection<Coc_ens_app_exer> coc_ens_app_exers) {
-        this.coc_ens_app_exers = coc_ens_app_exers;
+    public void setCoc_suggestions(Collection<Coc_suggestion> coc_suggestions) {
+        this.coc_suggestions = coc_suggestions;
     }
 
-    public Collection<Coc_question> getCoc_questions() {
-        return coc_questions;
-    }
-
-    public void setCoc_questions(Collection<Coc_question> coc_questions) {
-        this.coc_questions = coc_questions;
+    @Override
+    public int compareTo(Coc_exercice o) {
+        return this.getId().compareTo(o.getId());
     }
 }

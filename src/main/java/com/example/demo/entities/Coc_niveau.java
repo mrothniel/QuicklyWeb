@@ -13,13 +13,13 @@ public class Coc_niveau {
    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
    private String libelle;
-   @OneToOne(mappedBy = "coc_niveau")
+   @OneToOne(mappedBy = "coc_niveau", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
    private Coc_apprenant apprenant;
-   @OneToOne(mappedBy = "coc_niveau")
+   @OneToOne(mappedBy = "coc_niveau", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
    private Coc_exercice exercice;
-   @OneToOne(mappedBy = "coc_niveau")
+   @OneToOne(mappedBy = "coc_niveau", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
    private Coc_user_prospect user_prospect;
 
