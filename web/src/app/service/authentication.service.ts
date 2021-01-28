@@ -3,10 +3,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
 export class User {
-  name: String;
-  prenom : String
-  password : String
-  email:String
   constructor(public status: string) {}
 }
 
@@ -18,6 +14,7 @@ export class AuthenticationService {
 // Provide username and password for authentication, and once authentication is successful,
 //store JWT token in session
   authenticate(username, password) {
+    console.log(this.httpClient)
     return this.httpClient
       .post<any>("http://localhost:8080/authenticate", { username, password })
       .pipe(
@@ -36,7 +33,7 @@ export class AuthenticationService {
     let user = sessionStorage.getItem("username");
     let userMail = sessionStorage.getItem("email");
     console.log(!(user === null));
-   // console.log(userMail);
+    //console.log(user);
     return !(user === null);
   }
 
