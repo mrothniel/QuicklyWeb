@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 
+import java.time.Clock;
 import java.util.ArrayList;
 
 import com.example.demo.dao.Coc_enseignantRepositories;
@@ -42,6 +43,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		newUser.setCOC_ENSEIGNANT_prenom(coc_enseignant_dto.getCOC_ENSEIGNANT_prenom());
 		newUser.setCOC_ENSEIGNANT_email(newUser.getCOC_ENSEIGNANT_email());
 		newUser.setCOC_ENSEIGNANT_motdepasse(passwordEncoder.encode(coc_enseignant_dto.getCOC_ENSEIGNANT_motdepasse()));
+		System.out.println(newUser.getCOC_ENSEIGNANT_email()+"user du service");
 		return userDao.save(newUser);
 	}
 }
