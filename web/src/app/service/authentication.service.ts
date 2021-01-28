@@ -14,6 +14,7 @@ export class AuthenticationService {
 // Provide username and password for authentication, and once authentication is successful,
 //store JWT token in session
   authenticate(username, password) {
+    console.log(this.httpClient)
     return this.httpClient
       .post<any>("http://localhost:8080/authenticate", { username, password })
       .pipe(
@@ -29,11 +30,11 @@ export class AuthenticationService {
   }
 
   isUserLoggedIn() {
-  //   let user = sessionStorage.getItem("username");
-  //   let userMail = sessionStorage.getItem("email");
-  //   console.log(!(user === null));
-  //  // console.log(userMail);
-  //   return !(user === null);
+    let user = sessionStorage.getItem("username");
+    let userMail = sessionStorage.getItem("email");
+    console.log(!(user === null));
+    //console.log(user);
+    return !(user === null);
   }
 
   logOut() {
