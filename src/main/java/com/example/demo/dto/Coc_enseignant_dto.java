@@ -1,15 +1,11 @@
 package com.example.demo.dto;
 
 public class Coc_enseignant_dto {
-    public Long id;
     public String COC_ENSEIGNANT_nom;
     public String COC_ENSEIGNANT_prenom;
     public String COC_ENSEIGNANT_email;
     public String COC_ENSEIGNANT_motdepasse;
 
-    public Long getId() {
-        return id;
-    }
 
     public String getCOC_ENSEIGNANT_nom() {
         return COC_ENSEIGNANT_nom;
@@ -43,5 +39,13 @@ public class Coc_enseignant_dto {
         this.COC_ENSEIGNANT_motdepasse = COC_ENSEIGNANT_motdepasse;
     }
 
-
+    @Override
+    public String toString() {
+        return "Coc_enseignant_dto{" +
+                "COC_ENSEIGNANT_nom='" + COC_ENSEIGNANT_nom + '\'' +
+                ", COC_ENSEIGNANT_prenom='" + COC_ENSEIGNANT_prenom + '\'' +
+                ", COC_ENSEIGNANT_email='" + COC_ENSEIGNANT_email + '\'' +
+                ", COC_ENSEIGNANT_motdepasse='" + COC_ENSEIGNANT_motdepasse + '\'' +
+                '}';
+    }
 }
