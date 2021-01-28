@@ -32,8 +32,7 @@ public class JwtAuthenticationController {
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody Coc_enseignant_dto inscription) throws Exception {
-		String ensi =  inscription.getCOC_ENSEIGNANT_nom();
-		System.out.println(ensi+"user controller");
+		System.out.println(inscription+"user controller");
 		Objects.requireNonNull(inscription);
 
 		return ResponseEntity.ok(userDetailsService.save(inscription));

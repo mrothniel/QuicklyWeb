@@ -1,0 +1,51 @@
+
+
+
+
+
+<div class="login-page">
+  <div class="content">
+      <form class="login-form" fxFlex  >
+          <div class="text-center">
+              <h2 class="app-name">Login</h2>
+              <span>Si vous n'avez pas encore de compte veuillez en creer avec le mail sur lequel vous avez reçu l'invitation</span>
+          </div>
+          <div fxFlex  fxlayout="row" fxlayout.lt-md="column">
+              <div fxFlexFill>
+                  <mat-form-field class="w-100">
+                      <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+                      <!-- <input matInput placeholder="Email"> -->
+                  </mat-form-field>
+              </div>
+          </div>
+          <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+              <div fxFlexFill>
+                  <mat-form-field class="w-100">
+                      <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+                  </mat-form-field>
+              </div>
+          </div>
+          <div fxFlex  fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
+              <!-- <div fxFlex>
+                  <mat-checkbox color="primary">Remember Me</mat-checkbox>
+              </div> -->
+              <div fxFlex  fxLayoutAlign="end">
+                  <a [routerLink]="['/register']">Creer compte</a>
+              </div>
+          </div>
+          <p *ngIf="error" class="error">
+              {{ error }}
+          </p>
+          <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+              <div fxFlexFill>
+                  <button mat-raised-button color="primary" class="w-100" (click)="checkLogin()">Login</button>
+              </div>
+          </div>
+
+      </form>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </div>
+  <!-- <mat-card-actions>
+      <button mat-raised-button (click)="checkLogin()" color="primary">Login</button>
+  </mat-card-actions> -->
+</div>

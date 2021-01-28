@@ -1,0 +1,145 @@
+
+<mat-toolbar color="primary">Creation d'un Sondage</mat-toolbar>
+<mat-card>
+      <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Pour quelle occasion?</ng-template>
+            <mat-form-field class="example-full-width">
+              <mat-label>Titre</mat-label>
+              <input matInput placeholder="Reunion,fêtes,diner gala" formControlName="titreCtrl" required>
+            </mat-form-field> <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Lieu</mat-label>
+                <input matInput placeholder="Rennes,paris,abidjan" formControlName="lieuCtrl" required>
+            </mat-form-field> <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Resume</mat-label>
+                 <textarea  matInput placeholder="resume..." formControlName="resumeCtrl" required></textarea>
+            </mat-form-field>
+            <!-- <input matInput formControlName="mailCtrl" type="hidden" value="{{userMail}}"> -->
+            <div>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Creation des creneaux</ng-template>
+            <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                        <mat-form-field>
+                            <input matInput placeholder="saisissez une date" [matDatepicker]="picker" [formControl]="dateControl1">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                       </mat-form-field>
+                    </td>
+                    <td>
+                        <ngx-mat-timepicker [formControl]="dateControl2"></ngx-mat-timepicker>
+                    </td>
+                    <td>
+                        <ngx-mat-timepicker [formControl]="dateControl3"></ngx-mat-timepicker>
+                    </td>
+                    <td>
+                      <mat-checkbox [formControl]="checkedCtrl">Pause</mat-checkbox>
+                    </td>
+                    <td>
+                        <button mat-raised-button  color="primary"(click)="addEvent()">Ajouter creneau</button>
+                    </td>
+
+                  </tr>
+                </tbody>
+            </table>
+
+            <mat-card >
+              <table *ngIf="events"  >
+                  <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Heure debut</th>
+                        <th>Heure fin</th>
+                        <!-- <th>Action</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let event of events">
+                            <td>
+                                {{event.date | date:'fullDate' }}
+                            </td>
+                            <td>
+                                {{event.start | date:'shortTime' }}
+                            </td>
+                            <td>
+                                {{event.end | date:'shortTime' }}
+                            </td>
+                            <!-- <td>
+                                <button mat-raised-button  color="warn"(click)="deleteEvent(event)">Supprimer creneau</button>
+                            </td> -->
+                          </tr>
+
+                        </tbody>
+              </table>
+            </mat-card>
+            <div>
+              <button mat-button matStepperPrevious>Retour</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Inviter des participants</ng-template>
+                <mat-form-field class="example-chip-list">
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                      <mat-chip
+                        *ngFor="let mail of mails"
+                        [selectable]="selectable"
+                        [removable]="removable"
+                        (removed)="remove(mail)">
+                        {{mail}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input
+                        placeholder="Ajouter emails ..."
+                        #fruitInput
+                        [formControl]="mailsCtrl"
+                        [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                      <mat-option *ngFor="let mail of filteredMails | async" [value]="mail.email">
+                        {{mail.email}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+
+              <div>
+                 <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Suivant</button>
+              </div>
+            </form>
+          </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Fin</ng-template>
+          <p>Veuillez valider la creation du formulaire</p>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <!-- <button mat-raised-button  color="primary" [routerLink]="['/sondage-details']">Valider</button> -->
+            <button mat-raised-button  color="primary" (click)="creerSondage()">Valider</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+
+      <div *ngIf="response" class="center">
+        <br><br>
+        <mat-spinner color="warn"></mat-spinner>
+        <br><br>
+      </div>
+
+
+</mat-card>
+

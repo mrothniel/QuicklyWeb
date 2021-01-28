@@ -1,0 +1,12 @@
+<mat-card [ngClass]="bgClass">
+    <mat-card-header fxLayoutAlign="center center">
+        <div mat-card-avatar fxLayoutAlign="center center">
+            <mat-icon class="icon-lg">{{icon}}</mat-icon>
+        </div>
+        <mat-card-subtitle>{{label}}</mat-card-subtitle>
+        <mat-card-subtitle>{{content}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+        <button mat-raised-button  color="primary" [routerLink]="['/sondage']">creer un sondage</button>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,218 @@
+<div [fxFlex]="100" >
+    <mat-card fxFlexFill fxLayoutAlign="center center">
+      <h2>Commencez par creer votre premier doodle </h2>
+    </mat-card>
+ </div><br>
+<div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
+
+    <div [fxFlex]="33.33">
+      <stat [bgClass]="'info'" [icon]="'date_range'" [count]="userSurveyTotal" [countNovalided]="surveyNoValided"
+       [countValided]="surveyValided" [labeltotal]="'Sondage crées'"
+        [labelValided]="'Sondage validés'" [labelNoValided] ="'Sondages non validés'"></stat>
+    </div>
+
+    <div [fxFlex]="33.33">
+        <app-stat [bgClass]="'success'" [icon]="'supervisor_account'"  [label]="'REUNION DE GROUPE'" [content]="'Trouvez le moment ideal pour vous retrouvez'"></app-stat>
+    </div>
+    <div [fxFlex]="33.33">
+      <stat [bgClass]="'danger'" [icon]="'email'" [count]="surveyListTotal"
+       [countNovalided]="invitationNoValided" [countValided]="invitationValided"
+       [labeltotal]="'Invitations reçus'"
+        [labelValided]="'Invitations validées'" [labelNoValided] ="'Invitations non validées'"></stat>
+    </div>
+</div>
+
+<!-- <div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
+  <div fxFlex>
+      <app-stat [bgClass]="'success'" [icon]="'done_all'" [count]="13" [label]="'Colis livres!'"></app-stat>
+  </div>
+  <div fxFlex>
+      <app-stat [bgClass]="'warn'" [icon]="'access_time'" [count]="12" [label]="'Colis en cours de livraison!'"></app-stat>
+  </div>
+  <div fxFlex>
+      <app-stat [bgClass]="'danger'" [icon]="'report_problem'" [count]="14" [label]="'Colis retires!'"></app-stat>
+  </div>
+  <div fxFlex>
+      <app-stat [bgClass]="'info'" [icon]="'view_list'" [count]="49" [label]="'Voir tous les colis!'"></app-stat>
+  </div>
+</div> -->
+<!-- <div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
+
+</div> -->
+<!-- <div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+    <div [fxFlex]="50" >
+        <mat-card >
+            <mat-card-header>
+                <mat-card-title>Resultats du dernier sondage</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <canvas baseChart width="500" height="200" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                   ></canvas>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div [fxFlex]="50">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Details de la reunion</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+               <table>
+                 <tr>
+                   <td><strong>Titre reunion:</strong></td>
+                   <td>Reunion cgi</td>
+                 </tr>
+                 <tr>
+                    <td> <strong>Lieu:</strong> </td>
+                    <td>Cession cevigne</td>
+                 </tr>
+                 <tr>
+                    <td> <strong>Date:</strong> </td>
+                    <td>24/10/20</td>
+                 </tr>
+                 <tr>
+                    <td> <strong>Resume:</strong> </td>
+                    <td>Resume Resume Resume Resume Resume Resume
+                        Resume Resume Resume Resume Resume Resume Resume Resume Resume Resume
+                        Resume Resume Resume Resume Resume Resume
+                        Resume Resume Resume Resume Resume Resume Resume Resume Resume Resume</td>
+                 </tr>
+
+               </table>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div> -->
+
+<!-- <div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+    <div [fxFlex]="50" >
+        <mat-card >
+            <mat-card-header>
+                <mat-card-title>Liste de presences</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+               <ul>
+                 <li>
+                   Fabrice Kadio
+                 </li>
+                 <li>
+                    Laurelle Sable
+                  </li>
+                  <li>
+                      Mathieu Kouakou
+                    </li>
+               </ul>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div [fxFlex]="50">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Liste d'absences</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <ul>
+                    <li>
+                     Jerome dubois
+                    </li>
+                    <li>Jean du jardin
+                     </li>
+                     <li>
+                         Yves leboeuf
+                       </li>
+                  </ul>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+ -->
+ <div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+  <div [fxFlex]="50" >
+    <mat-toolbar color="primary">Liste des sondages crees</mat-toolbar>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource2">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="titre">
+          <th mat-header-cell *matHeaderCellDef> Titre </th>
+          <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="lieu">
+          <th mat-header-cell *matHeaderCellDef> Lieu </th>
+          <td mat-cell *matCellDef="let element"> {{element.lieu}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="statut">
+          <th mat-header-cell *matHeaderCellDef> Statut </th>
+          <td mat-cell *matCellDef="let element"  > <app-statut-creator [id]="element.id"></app-statut-creator> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn" 	[routerLink]="['./../sondage-details',element.id]">voir</button> </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <!-- <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+    </div>
+
+  </div>
+
+  <div [fxFlex]="50" >
+    <mat-toolbar color="primary">Liste des invitations reçus</mat-toolbar>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="titre">
+          <th mat-header-cell *matHeaderCellDef> Titre </th>
+          <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="lieu">
+          <th mat-header-cell *matHeaderCellDef> Lieu </th>
+          <td mat-cell *matCellDef="let element"> {{element.lieu}} </td>
+        </ng-container>
+        <!-- meetingIscreated -->
+        <!-- Weight Column -->
+        <ng-container matColumnDef="statut">
+          <th mat-header-cell *matHeaderCellDef> Statut </th>
+          <td mat-cell *matCellDef="let element"> <app-statut [slotID]="element.id" (total) = getTotal($event)></app-statut> </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="hôte">
+          <th mat-header-cell *matHeaderCellDef> Hôte </th>
+          <td mat-cell *matCellDef="let element"> {{element.user.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn" 	[routerLink]="['./../sondage-details',element.id]">voir sondage</button> </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="Details reunion">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" [disabled]="meetingIscreated" 	[routerLink]="['./../reunion',element.id]">voir reunion</button> </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[10, 20,30]" showFirstLastButtons></mat-paginator>
+    </div>
+
+  </div>
+</div>
