@@ -6,7 +6,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { ErrorStateMatcher } from '@angular/material';
 import { Preference } from './Preferences';
-import { InscriptionForm } from './InscriptionForm';
+import { Coc_enseignant_dto } from './InscriptionForm';
 import { RegisterService } from '../service/register.service';
 import { Router } from '@angular/router';
 
@@ -130,12 +130,13 @@ export class RegisterComponent implements OnInit {
   // }
 
   valider() {
-    const inscription =  new InscriptionForm(this.userForm.value);
+    const inscription =  new Coc_enseignant_dto(this.userForm.value.COC_ENSEIGNANT_nom, this.userForm.value.COC_ENSEIGNANT_prenom,
+    this.userForm.value.COC_ENSEIGNANT_email, this.userForm.value.COC_ENSEIGNANT_motdepasse);
     console.log(inscription);
     this.rs.register(inscription).subscribe(
       data => {
            console.log('utlisateur creer avec succes');
-         
+
            this.checkLogin(this.userForm.value.COC_ENSEIGNANT_nom, this.userForm.value.COC_ENSEIGNANT_motdepasse);
           // this.checkLogin(this.userForm.value.username , this.userForm.value.username.password);
       },
