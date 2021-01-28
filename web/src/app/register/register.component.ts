@@ -131,8 +131,8 @@ export class RegisterComponent implements OnInit {
 
   valider() {
     const inscription =  new InscriptionForm(this.userForm.value);
-    console.log(inscription);
-    this.rs.register(inscription).subscribe(
+    console.log(inscription.user);
+    this.rs.register(inscription.user).subscribe(
       data => {
            console.log('utlisateur creer avec succes');
          
@@ -142,7 +142,8 @@ export class RegisterComponent implements OnInit {
       error => {
         // this.invalidLogin = true
         this.error = error.message;
-       console.log(this.userForm.value.COC_ENSEIGNANT_nom, this.userForm.value.COC_ENSEIGNANT_motdepasse)
+         console.log(this.error)
+      // console.log(this.userForm.value.COC_ENSEIGNANT_nom, this.userForm.value.COC_ENSEIGNANT_motdepasse)
       }
     );
   }

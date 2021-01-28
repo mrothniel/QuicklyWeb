@@ -14,7 +14,7 @@ constructor(private httpClient: HttpClient) { }
   register(data) {
     
     return this.httpClient
-      .post<any>('http://localhost:8080/register', data);
+      .post<InscriptionForm>('http://localhost:8080/register', data);
      
   }
 

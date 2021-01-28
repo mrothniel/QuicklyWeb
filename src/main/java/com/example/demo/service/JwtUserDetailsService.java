@@ -41,7 +41,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		Coc_enseignant newUser = new Coc_enseignant();
 		newUser.setCOC_ENSEIGNANT_nom(coc_enseignant_dto.getCOC_ENSEIGNANT_nom());
 		newUser.setCOC_ENSEIGNANT_prenom(coc_enseignant_dto.getCOC_ENSEIGNANT_prenom());
-		newUser.setCOC_ENSEIGNANT_email(newUser.getCOC_ENSEIGNANT_email());
+		newUser.setCOC_ENSEIGNANT_email(coc_enseignant_dto.getCOC_ENSEIGNANT_email());
 		newUser.setCOC_ENSEIGNANT_motdepasse(passwordEncoder.encode(coc_enseignant_dto.getCOC_ENSEIGNANT_motdepasse()));
 		System.out.println(newUser.getCOC_ENSEIGNANT_email()+"user du service");
 		return userDao.save(newUser);

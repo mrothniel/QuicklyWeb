@@ -3,10 +3,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
 export class User {
-  name: String;
-  prenom : String
-  password : String
-  email:String
   constructor(public status: string) {}
 }
 
@@ -33,11 +29,11 @@ export class AuthenticationService {
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem("username");
-    let userMail = sessionStorage.getItem("email");
-    console.log(!(user === null));
-   // console.log(userMail);
-    return !(user === null);
+  //   let user = sessionStorage.getItem("username");
+  //   let userMail = sessionStorage.getItem("email");
+  //   console.log(!(user === null));
+  //  // console.log(userMail);
+  //   return !(user === null);
   }
 
   logOut() {

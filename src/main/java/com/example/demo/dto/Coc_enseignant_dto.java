@@ -1,11 +1,11 @@
 package com.example.demo.dto;
 
 public class Coc_enseignant_dto {
-    private Long id;
-    private String COC_ENSEIGNANT_nom;
-    private String COC_ENSEIGNANT_prenom;
-    private String COC_ENSEIGNANT_email;
-    private String COC_ENSEIGNANT_motdepasse;
+    public Long id;
+    public String COC_ENSEIGNANT_nom;
+    public String COC_ENSEIGNANT_prenom;
+    public String COC_ENSEIGNANT_email;
+    public String COC_ENSEIGNANT_motdepasse;
 
     public Long getId() {
         return id;
